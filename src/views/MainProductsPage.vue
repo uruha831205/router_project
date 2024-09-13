@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { onMounted, ref, shallowRef } from "vue";
+import { onMounted, ref, triggerRef } from "vue";
 
 import { storeToRefs } from "pinia";
 import { gun_shop } from "../stores/usePinia.js";
@@ -25,15 +25,35 @@ function toogle_ShoppingCart() {
 
 function clear_ShoppingCart() {
   all_ShoppingCart_products.value = [];
-  localStorage.setItem(
-    "all_shopping_cart_products",
-    JSON.stringify(all_ShoppingCart_products.value)
-  );
+  save_all_ShoppingCart_products_in_localStorage();
 }
 
 function read_ShoppingCart() {
   all_ShoppingCart_products.value =
     JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
+}
+
+function reduce_quantuty(product) {
+  if (product.quantity != 1) {
+    product.quantity -= 1;
+  }
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function add_quantuty(product) {
+  if (product.quantity != 999) {
+    product.quantity += 1;
+  }
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function save_all_ShoppingCart_products_in_localStorage() {
+  localStorage.setItem(
+    "all_shopping_cart_products",
+    JSON.stringify(all_ShoppingCart_products.value)
+  );
 }
 
 onMounted(() => {
@@ -115,19 +135,33 @@ onMounted(() => {
     </footer>
     <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
     <div class="shopping-cart-list" :class="[{ show: isOpen }]">
-      <div class="p-3" style="position: relative">
+      <div class="p-2" style="position: relative">
         <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
         <div
           v-for="product in all_ShoppingCart_products"
           class="row mb-2 align-items-center"
         >
-          <img :src="product.p_pic" alt="" class="col-3" />
-          <div class="col-5 text-center">{{ product.p_name }}</div>
-          <div class="col-2">${{ product.p_price }}</div>
-          <div class="col-2 text-center d-flex justify-content-around gap-1">
-            <span class="w-100 bg-white rounded-circle">+</span>
-            <span class="w-100">1</span>
-            <span class="w-100 bg-white rounded-circle">-</span>
+          <img :src="product.product.p_pic" alt="" class="col-3" />
+          <div class="col-4 text-center">{{ product.product.p_name }}</div>
+          <div class="col-2">
+            ${{ product.product.p_price * product.quantity }}
+          </div>
+          <div class="col-3 text-center d-flex justify-content-around">
+            <button
+              class="bg-white shopping-cart-list-btn"
+              @click="reduce_quantuty(product)"
+              :disabled="product.quantity === 1"
+            >
+              -
+            </button>
+            <span class="">{{ product.quantity }}</span>
+            <button
+              class="bg-white shopping-cart-list-btn"
+              @click="add_quantuty(product)"
+              :disabled="product.quantity === 10"
+            >
+              +
+            </button>
           </div>
         </div>
         <button
@@ -266,8 +300,8 @@ onMounted(() => {
 }
 
 .shopping-cart-list {
-  width: 30%;
-  height: 35%;
+  width: 550px;
+  height: 300px;
   position: fixed;
   right: 3%;
   bottom: 15%;
@@ -283,6 +317,13 @@ onMounted(() => {
 
 .shopping-cart-list.show {
   transform: scale(1);
+}
+
+.shopping-cart-list-btn {
+  user-select: none;
+  border-radius: 5px;
+  width: 20%;
+  cursor: pointer;
 }
 
 header {

@@ -270,12 +270,38 @@ export const gun_shop = defineStore("gun_shop", () => {
   ]);
 
   //購物車內的商品
+  //all_ShoppingCart_products 內的基礎變數: 型別{product: object, quantity: int}
   const all_ShoppingCart_products = shallowRef([]);
 
   //增加商品至購物車
   const add_products = (product) => {
-    all_ShoppingCart_products.value.push(product);
+    set_products(product);
+    //all_ShoppingCart_products.value.push(product);
     triggerRef(all_ShoppingCart_products);
+  };
+
+  //判斷要加入的商品是否有在購物車內
+  //True : 改數量就好
+  //False : 加入一筆全新的商品資料
+  const set_products = (join_product) => {
+    const find_product = all_ShoppingCart_products.value.find(
+      (product_in_cart) => product_in_cart.product.p_id === join_product.p_id
+    );
+    console.log(find_product);
+    if (find_product === undefined) {
+      all_ShoppingCart_products.value.push({
+        product: join_product,
+        quantity: 1,
+      });
+    } else {
+      const index = all_ShoppingCart_products.value.findIndex(
+        (item) => item.product.p_id === join_product.p_id
+      );
+      //限制數量
+      if (all_ShoppingCart_products.value[index].quantity < 10) {
+        all_ShoppingCart_products.value[index].quantity += 1;
+      }
+    }
   };
 
   return {
