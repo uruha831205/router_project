@@ -6,9 +6,6 @@ const anyZIndex = ref(0);
 const realZIndex = ref(0);
 
 const setBoxZindex = (choose) => {
-  // box1ZIndex.value = choose === "airsoft" ? 2 : 1;
-  // box2ZIndex.value = choose === "real" ? 2 : 1;
-
   if (choose === "airsoft") {
     airsoftZIndex.value = 2;
     anyZIndex.value = 1;
@@ -29,7 +26,7 @@ const setBoxZindex = (choose) => {
   <main class="layout">
     <router-link
       class="box airsoft-gun"
-      to="/main/airsoft"
+      to="/airsoft"
       @mouseenter="setBoxZindex('airsoft')"
     >
       <div class="pic airsoft-pic">
@@ -40,22 +37,18 @@ const setBoxZindex = (choose) => {
       </div>
     </router-link>
 
-    <router-link
-      class="box any"
-      to="/main/any"
-      @mouseenter="setBoxZindex('any')"
-    >
+    <!-- <router-link class="box any" to="/any" @mouseenter="setBoxZindex('any')">
       <div class="pic any-pic">
         <div class="description">
           <div class="title">隨意逛逛</div>
-          <div class="context">嗯...算了，沒事，我自己逛逛就好</div>
+          <div class="context">沒事，我自己逛逛就好</div>
         </div>
       </div>
-    </router-link>
+    </router-link> -->
 
     <router-link
       class="box real-gun"
-      to="/main/real"
+      to="/real"
       @mouseenter="setBoxZindex('real')"
     >
       <div class="pic real-pic">
@@ -75,10 +68,14 @@ const setBoxZindex = (choose) => {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  gap: 25px;
+  padding: 15px;
+  background-color: gray;
 }
 
 .layout:hover .pic:not(:hover) {
   filter: blur(2px);
+  opacity: 0.2;
 }
 
 .box {
@@ -86,22 +83,26 @@ const setBoxZindex = (choose) => {
   height: 100%;
   transition: all 0.3s ease;
   background-color: black;
-}
-
-.box:hover {
-  flex: 3;
-  scale: 1.04;
+  transition: 0.45s;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .pic {
   /*filter: drop-shadow(0 0 50px rgba(0, 0, 0, 0.5));*/
   box-shadow: inset 0px 0px 100px black;
   position: relative;
+  transition: 0.45s;
 }
 
-.pic:hover {
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5),
-    0 0 15px rgba(255, 255, 255, 0.7);
+.box:hover {
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.7);
+  flex: 2;
+}
+
+.box:hover .pic {
+  scale: 1.1;
 }
 
 .description {
@@ -109,7 +110,7 @@ const setBoxZindex = (choose) => {
   bottom: 10%;
   text-shadow: 2px 2px 10px black;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 4em;
   opacity: 0;
 }
 
@@ -168,11 +169,9 @@ const setBoxZindex = (choose) => {
   right: 10%;
 }
 
-.airsoft-gun:hover .description,
-.real-gun:hover .description,
-.any:hover .description {
+:is(.airsoft-gun:hover, .real-gun:hover, .any:hover) .description {
   transition: 0.5s;
-  transition-delay: 50ms;
+  transition-delay: 100ms;
   opacity: 1;
 }
 </style>

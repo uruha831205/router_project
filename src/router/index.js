@@ -6,49 +6,73 @@ const router = createRouter({
     {
       path: "/",
       name: "root",
-      component: import("../views/GunLandingPage.vue"),
+      component: () => import("../views/GunLandingPage.vue"),
     },
     {
-      path: "/adult",
-      name: "adult",
-      component: import("../views/AdultPage.vue"),
+      path: "/:message",
+      name: "main",
+      component: () => import("../views/MainProductsPage.vue"),
+      beforeEnter: (to, from, next) => {
+        const validMessages = ["airsoft", "real"];
+        if (validMessages.includes(to.params.message)) {
+          next();
+        } else {
+          next({ name: "404NotFound" });
+        }
+      },
       children: [
         {
-          path: "a",
-          name: "adult_a",
-          component: import("../views/adultpages/a.vue"),
+          path: "/:message/",
+          name: "default",
+          component: () => import("../views/productpages/DefaultPage.vue"),
         },
         {
-          path: "b",
-          name: "adult_b",
-          component: import("../views/adultpages/b.vue"),
+          path: "/:message/member",
+          name: "member",
+          component: () => import("../views/MemberPage.vue"),
         },
         {
-          path: "c",
-          name: "adult_c",
-          component: import("../views/adultpages/c.vue"),
+          path: "/:message/:product_id(A\\d+|R\\d+)",
+          name: "product_page",
+          component: () => import("../views/productpages/Product.vue"),
+          beforeEnter: (to, from, next) => {
+            if (
+              //若在生存遊戲頁面搜尋真實槍枝
+              !(
+                (to.params.message == "airsoft") &
+                to.params.product_id.startsWith("R")
+              ) &
+              //若在真實槍枝頁面搜尋生存遊戲
+              !(
+                (to.params.message == "real") &
+                to.params.product_id.startsWith("A")
+              )
+            ) {
+              next();
+            } else {
+              next({ name: "404NotFound" });
+            }
+          },
+        },
+        {
+          path: "/:message/:kind",
+          name: "kind_product",
+          component: () => import("../views/productpages/ShowProductPage.vue"),
+          beforeEnter: (to, from, next) => {
+            const validMessages = ["gun", "part", "component", "equipment"];
+            if (validMessages.includes(to.params.kind)) {
+              next();
+            } else {
+              next({ name: "404NotFound" });
+            }
+          },
         },
       ],
     },
     {
-      path: "/minor",
-      name: "minor",
-      component: import("../views/MinorPage.vue"),
-    },
-    {
-      path: "/main/:message",
-      name: "main",
-      component: import("../views/ShowProductsPage.vue"),
-    },
-    {
-      path: "/:id",
-      name: "dynamic_url",
-      component: import("../views/[id].vue"),
-    },
-    {
       path: "/:pathMatch(.*)*",
-      name: "NotFound",
-      component: import("../views/404.vue"),
+      name: "404NotFound",
+      component: () => import("../views/404.vue"),
     },
   ],
 });

@@ -124,7 +124,6 @@ img {
 .layout {
   min-height: 100vh;
   align-items: center;
-
   margin: 10px;
 }
 </style>
