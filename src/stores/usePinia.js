@@ -102,11 +102,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "A005",
-      p_name: "HK-416",
+      p_name: "HK-416A5",
       p_brand: "KWA",
       p_kind: "gun",
       p_son_kind: "突擊步槍",
-      p_price: 5000,
+      p_price: 7000,
       p_stock: 10,
       p_fornt: "300mm,360mm",
       p_color: ["black", "derest"],
@@ -116,11 +116,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "A006",
-      p_name: "鐵製板機",
+      p_name: "鐵製板機 V2",
       p_brand: "Slong",
       p_kind: "part",
       p_son_kind: "板機",
-      p_price: 800,
+      p_price: 850,
       p_stock: 50,
       p_fornt: "",
       p_color: "",
@@ -130,11 +130,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "A007",
-      p_name: "垂直握把",
+      p_name: "垂直握把 V2",
       p_brand: "MVG",
       p_kind: "component",
       p_son_kind: "握把",
-      p_price: 350,
+      p_price: 400,
       p_stock: 20,
       p_fornt: "",
       p_color: ["black", "derest"],
@@ -144,11 +144,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "A008",
-      p_name: "特勤專用背心",
+      p_name: "特勤專用背心 V2",
       p_brand: "其他",
       p_kind: "equipment",
       p_son_kind: "背心",
-      p_price: 2200,
+      p_price: 2300,
       p_stock: 5,
       p_fornt: "",
       p_color: "",
@@ -215,11 +215,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "R005",
-      p_name: "AK-47",
+      p_name: "AK-47S ",
       p_brand: "Kalashnikov",
       p_kind: "gun",
       p_son_kind: "突擊步槍",
-      p_price: 120000,
+      p_price: 125000,
       p_stock: 3,
       p_fornt: "",
       p_color: "",
@@ -229,11 +229,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "R006",
-      p_name: "快速反應板機",
+      p_name: "快速反應板機 V2",
       p_brand: "SALVIMAR",
       p_kind: "part",
       p_son_kind: "板機",
-      p_price: 9000,
+      p_price: 9050,
       p_stock: 10,
       p_fornt: "",
       p_color: "",
@@ -242,11 +242,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "R007",
-      p_name: "RA-TECH MOE 戰術握把",
+      p_name: "RA-TECH MOE 戰術握把 V2",
       p_brand: "RA-TECH",
       p_kind: "component",
       p_son_kind: "握把",
-      p_price: 2250,
+      p_price: 2300,
       p_stock: 10,
       p_fornt: "",
       p_color: "black,green",
@@ -255,11 +255,11 @@ export const gun_shop = defineStore("gun_shop", () => {
     },
     {
       p_id: "R008",
-      p_name: "5.11-TACTEC PLATE CARRIER 戰術背心",
+      p_name: "5.11-TACTEC PLATE CARRIER 戰術背心 V2",
       p_brand: "5.11",
       p_kind: "equipment",
       p_son_kind: "背心",
-      p_price: 8500,
+      p_price: 8600,
       p_stock: 5,
       p_fornt: "",
       p_color: "",
@@ -287,7 +287,6 @@ export const gun_shop = defineStore("gun_shop", () => {
     const find_product = all_ShoppingCart_products.value.find(
       (product_in_cart) => product_in_cart.product.p_id === join_product.p_id
     );
-    console.log(find_product);
     if (find_product === undefined) {
       all_ShoppingCart_products.value.push({
         product: join_product,
@@ -297,7 +296,7 @@ export const gun_shop = defineStore("gun_shop", () => {
       const index = all_ShoppingCart_products.value.findIndex(
         (item) => item.product.p_id === join_product.p_id
       );
-      //限制數量
+      //限制增加最大數量 : 10
       if (all_ShoppingCart_products.value[index].quantity < 10) {
         all_ShoppingCart_products.value[index].quantity += 1;
       }

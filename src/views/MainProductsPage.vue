@@ -23,14 +23,14 @@ function toogle_ShoppingCart() {
   isOpen.value = !isOpen.value;
 }
 
-function clear_ShoppingCart() {
-  all_ShoppingCart_products.value = [];
-  save_all_ShoppingCart_products_in_localStorage();
-}
-
 function read_ShoppingCart() {
   all_ShoppingCart_products.value =
     JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
+}
+
+function clear_ShoppingCart() {
+  all_ShoppingCart_products.value = [];
+  save_all_ShoppingCart_products_in_localStorage();
 }
 
 function reduce_quantuty(product) {
@@ -45,6 +45,15 @@ function add_quantuty(product) {
   if (product.quantity != 999) {
     product.quantity += 1;
   }
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function cancel_product(Index) {
+  const index = all_ShoppingCart_products.value.findIndex(
+    (item) => item.product.p_id == Index
+  );
+  all_ShoppingCart_products.value.splice(index, 1);
   triggerRef(all_ShoppingCart_products);
   save_all_ShoppingCart_products_in_localStorage();
 }
@@ -139,16 +148,16 @@ onMounted(() => {
         <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
         <div
           v-for="product in all_ShoppingCart_products"
-          class="row mb-2 align-items-center"
+          class="row mb-2 align-items-center m-0"
         >
           <img :src="product.product.p_pic" alt="" class="col-3" />
-          <div class="col-4 text-center">{{ product.product.p_name }}</div>
+          <div class="col-3 text-center">{{ product.product.p_name }}</div>
           <div class="col-2">
             ${{ product.product.p_price * product.quantity }}
           </div>
           <div class="col-3 text-center d-flex justify-content-around">
             <button
-              class="bg-white shopping-cart-list-btn"
+              class="bg-white shopping-cart-btn"
               @click="reduce_quantuty(product)"
               :disabled="product.quantity === 1"
             >
@@ -156,12 +165,20 @@ onMounted(() => {
             </button>
             <span class="">{{ product.quantity }}</span>
             <button
-              class="bg-white shopping-cart-list-btn"
+              class="bg-white shopping-cart-btn"
               @click="add_quantuty(product)"
               :disabled="product.quantity === 10"
             >
               +
             </button>
+          </div>
+          <div class="col-1">
+            <img
+              src="../assets/cancel.svg"
+              class="shopping-cart-cancel-btn"
+              alt="cancel-btn"
+              @click="cancel_product(product.product.p_id)"
+            />
           </div>
         </div>
         <button
@@ -319,10 +336,16 @@ onMounted(() => {
   transform: scale(1);
 }
 
-.shopping-cart-list-btn {
+.shopping-cart-btn {
   user-select: none;
   border-radius: 5px;
   width: 20%;
+  cursor: pointer;
+}
+
+.shopping-cart-cancel-btn {
+  width: 80%;
+  user-select: none;
   cursor: pointer;
 }
 
