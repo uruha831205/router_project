@@ -75,6 +75,15 @@ const router = createRouter({
       component: () => import("../views/404.vue"),
     },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      // 如果有保存的滾動位置，則恢復到之前保存的位置
+      return savedPosition;
+    } else {
+      // 否則，滾動到頁面頂部
+      return { top: 0 };
+    }
+  },
 });
 
 export default router;

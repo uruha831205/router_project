@@ -73,6 +73,13 @@ const setBoxZindex = (choose) => {
   background-color: gray;
 }
 
+@media screen and (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    font-size: 10px;
+  }
+}
+
 .layout:hover .pic:not(:hover) {
   filter: blur(2px);
   opacity: 0.2;

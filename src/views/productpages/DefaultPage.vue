@@ -57,7 +57,7 @@ const show_datas = computed(() => {
 </script>
 
 <template>
-  <main class="container">
+  <main class="container-xl">
     <!-- @slideChange="onSlideChange" -->
     <swiper
       :loop="true"

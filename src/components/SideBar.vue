@@ -18,7 +18,6 @@ const toggleDropdown = (dropdownKey) => {
   <!-- 搜尋引擎 -->
   <div class="search-bar">
     <input type="text" class="search p-2" placeholder=": HK416  戰術手套" />
-    <!-- <button type="submit" class="search-btn px-2 bg-gradient">搜尋</button> -->
   </div>
   <!-- 下拉式選單 -->
   <div

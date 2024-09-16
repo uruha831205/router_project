@@ -77,7 +77,7 @@ watchEffect(() => {
                 @click="add_product_to_Cart(item)"
               >
                 <!--購物車按鈕在上面-->
-                <i class="bi bi-cart3 pe-2"></i>購物車
+                <i class="bi bi-cart3 pe-2"></i>加入購物車
               </button>
             </div>
           </div>

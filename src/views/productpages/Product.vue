@@ -15,7 +15,7 @@ const select_data = choose_data.value.find(
 </script>
 
 <template>
-  <div class="container">
+  <div class="container-xl">
     <h1>This is Product Page</h1>
     <div>{{ get_route.params }}</div>
     <div>{{ get_route.params.message }}</div>

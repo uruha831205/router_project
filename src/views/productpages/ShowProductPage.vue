@@ -15,7 +15,7 @@ const get_route = useRoute();
 // );
 </script>
 <template>
-  <div class="container d-flex p-0">
+  <div class="container-md d-flex p-0">
     <div class="sidebar">
       <psidebar></psidebar>
     </div>

@@ -11,12 +11,17 @@ const { all_ShoppingCart_products } = storeToRefs(gunshop);
 
 const get_route = useRoute();
 const get_router = useRouter();
+const toogle = ref(false);
 
 const route_name = get_route.params.message;
 const isOpen = ref(false);
 
 if (!["airsoft", "real", "member"].includes(route_name)) {
   get_router.replace("/404");
+}
+
+function clickToogle() {
+  toogle.value = !toogle.value;
 }
 
 function toogle_ShoppingCart() {
@@ -72,50 +77,58 @@ onMounted(() => {
 
 <template>
   <div class="layout">
-    <header class="container p-0">
+    <header class="container-md p-0">
       <router-link :to="`/${route_name}`" class="logo text-black"
         >Logo</router-link
       >
-      <div class="member">
-        <router-link :to="`/${route_name}/member`" class="member text-black"
-          >會員中心</router-link
-        >
-      </div>
+
+      <router-link :to="`/${route_name}/member`" class="member text-black"
+        >會員中心</router-link
+      >
     </header>
 
     <nav class="bg-gradient">
-      <div class="container navbar h-100 w-100">
-        <div class="text-white">
+      <div class="container-md navbar h-100 w-100 custom-navbar">
+        <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
-            class="choose me-4 text-black fw-bold fs-4"
+            class="choose text-black fw-bold fs-3"
             replace
             >長槍短槍</router-link
           >
           <router-link
             :to="`/${route_name}/part`"
-            class="choose me-4 text-black fw-bold fs-4"
+            class="choose text-black fw-bold fs-3"
             replace
             >內部零件</router-link
           >
           <router-link
             :to="`/${route_name}/component`"
-            class="choose me-4 text-black fw-bold fs-4"
+            class="choose text-black fw-bold fs-3"
             replace
             >外部配件</router-link
           >
           <router-link
             :to="`/${route_name}/equipment`"
-            class="choose text-black fw-bold fs-4"
+            class="choose text-black fw-bold fs-3"
             replace
             >人身裝備</router-link
           >
         </div>
-        <div class="search-bar h-75 w-25">
-          <input type="text" class="search p-2" placeholder="HK416  戰術手套" />
-          <button type="submit" class="search-btn px-2 bg-gradient">
-            搜尋
-          </button>
+        <div class="search-bar d-flex">
+          <div class="toggle-area ms-1 me-2 fs-1" @click="clickToogle()">
+            <i class="bi bi-list"></i>
+          </div>
+          <div class="search-area w-100">
+            <input
+              type="text"
+              class="search-text p-2"
+              placeholder="HK416  戰術手套"
+            />
+            <button type="submit" class="search-btn px-2 bg-gradient">
+              搜尋
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -124,14 +137,12 @@ onMounted(() => {
       <div class="run-horse-words">新品即將進貨!!</div>
     </div>
 
-    <div>
+    <div class="router-view-area">
       <router-view></router-view>
     </div>
 
-    <div class="router-view-area"></div>
-
     <footer class="d-flex justify-content-center">
-      <main class="container row row-cols-lg-3 row-cols-xs-1">
+      <main class="container-xl row row-cols-lg-3 row-cols-xs-1">
         <div class="mb-5" v-for="x in 3">
           門市營業時間
           <hr class="mt-1 mb-2" />
@@ -142,30 +153,34 @@ onMounted(() => {
         </div>
       </main>
     </footer>
+
     <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
+
     <div class="shopping-cart-list" :class="[{ show: isOpen }]">
-      <div class="p-2" style="position: relative">
+      <div class="p-2 overflow-auto" style="scrollbar-width: thin">
         <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
         <div
           v-for="product in all_ShoppingCart_products"
           class="row mb-2 align-items-center m-0"
         >
           <img :src="product.product.p_pic" alt="" class="col-3" />
-          <div class="col-3 text-center">{{ product.product.p_name }}</div>
-          <div class="col-2">
+          <div class="col-3 text-center fw-bold">
+            {{ product.product.p_name }}
+          </div>
+          <div class="col-2 text-center fw-bold">
             ${{ product.product.p_price * product.quantity }}
           </div>
           <div class="col-3 text-center d-flex justify-content-around">
             <button
-              class="bg-white shopping-cart-btn"
+              class="bg-white fw-bold shoppingCartPorduct-btn"
               @click="reduce_quantuty(product)"
               :disabled="product.quantity === 1"
             >
               -
             </button>
-            <span class="">{{ product.quantity }}</span>
+            <span class="fw-bold">{{ product.quantity }}</span>
             <button
-              class="bg-white shopping-cart-btn"
+              class="bg-white fw-bold shoppingCartPorduct-btn"
               @click="add_quantuty(product)"
               :disabled="product.quantity === 10"
             >
@@ -181,12 +196,15 @@ onMounted(() => {
             />
           </div>
         </div>
+      </div>
+      <div class="w-100 d-flex">
         <button
           @click="clear_ShoppingCart"
-          style="position: fixed; top: 0; right: 0"
+          class="w-100 p-2 border-end border-dark shoppingCartList-btn"
         >
-          Clear
+          清空商品
         </button>
+        <button class="w-100 p-2 shoppingCartList-btn">前往結帳</button>
       </div>
     </div>
   </div>
@@ -199,16 +217,26 @@ onMounted(() => {
   text-decoration: none;
 }
 
-.search-bar {
-  width: 20%;
+.member {
+  font-size: 2.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.toggle-area {
+  display: none;
+}
+
+.search-area {
   display: flex;
   position: relative;
   border-radius: 5px;
   border: 1px solid black;
   overflow: hidden;
+  width: 20%;
 }
 
-.search {
+.search-text {
   width: 100%;
   height: 100%;
   border: none;
@@ -216,7 +244,7 @@ onMounted(() => {
   transition: 0.2s;
 }
 
-.search:focus {
+.search-text:focus {
   box-shadow: inset 0 0 3px black;
 }
 
@@ -229,24 +257,18 @@ onMounted(() => {
   border-left: 2px solid black;
 }
 
-.member {
-  font-size: 1.5em;
-  text-decoration: none;
-  font-style: unset;
-  font-weight: bold;
-}
-
 .choose {
   position: relative;
   font-size: 2em;
   text-decoration: none;
   font-style: unset;
+  margin-right: 1rem;
 }
 
 .choose::after {
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: -1px;
   content: "";
   width: 100%;
   height: 2px;
@@ -310,7 +332,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px black;
+  box-shadow: 0 0 6px black;
   user-select: none;
   cursor: pointer;
   z-index: 2;
@@ -328,19 +350,33 @@ onMounted(() => {
   transform-origin: bottom right;
   transition: 0.5s;
   color: black;
-  overflow-y: scroll;
+  overflow: hidden;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .shopping-cart-list.show {
   transform: scale(1);
 }
 
-.shopping-cart-btn {
+.shoppingCartPorduct-btn {
   user-select: none;
   border-radius: 5px;
   width: 20%;
   cursor: pointer;
+}
+
+.shoppingCartList-btn {
+  user-select: none;
+  border: none;
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.shoppingCartList-btn:hover {
+  background-color: rgb(228, 228, 228);
 }
 
 .shopping-cart-cancel-btn {
@@ -358,12 +394,66 @@ header {
 }
 
 nav {
-  height: 7vh;
   background-color: rgb(170, 170, 170); /*rgb(170, 170, 170)*/
 }
 
 footer {
   padding: 5rem;
   background-color: rgb(170, 170, 170);
+}
+
+@media screen and (max-width: 1000px) {
+  .custom-navbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  nav {
+    padding-inline: 0.5rem;
+  }
+
+  header {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .toggle-area {
+    display: block;
+  }
+
+  .link-bar {
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s;
+    transform-origin: top;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .link-bar.show {
+    max-height: 150px;
+    margin-top: 0.5rem;
+  }
+
+  .choose {
+    margin-right: 0;
+  }
+
+  .custom-navbar {
+    flex-direction: column-reverse;
+    padding-bottom: 0;
+  }
 }
 </style>
