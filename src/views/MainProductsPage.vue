@@ -115,8 +115,9 @@ onMounted(() => {
             >人身裝備</router-link
           >
         </div>
+
         <div class="search-bar d-flex">
-          <div class="toggle-area ms-1 me-2 fs-1" @click="clickToogle()">
+          <div class="toggle-area mx-1 fs-1" @click="clickToogle()">
             <i class="bi bi-list"></i>
           </div>
           <div class="search-area w-100">
@@ -227,13 +228,16 @@ onMounted(() => {
   display: none;
 }
 
+.search-bar {
+  width: 25%;
+}
+
 .search-area {
   display: flex;
   position: relative;
   border-radius: 5px;
   border: 1px solid black;
   overflow: hidden;
-  width: 20%;
 }
 
 .search-text {
