@@ -73,7 +73,7 @@ const show_datas = computed(() => {
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }"
-      class="mt-2 mb-2"
+      class="my-2"
     >
       <swiper-slide v-for="(product, index) in choose" :key="index">
         <!-- :class="{ 'img-animation': index === activeSlide }" -->
@@ -122,7 +122,7 @@ const show_datas = computed(() => {
 
 <style scoped>
 .new-product-banner {
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
 }
 
 .straight-display {

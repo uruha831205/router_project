@@ -77,7 +77,7 @@ onMounted(() => {
 
 <template>
   <div class="layout">
-    <header class="container-md p-0">
+    <header class="container-md">
       <router-link :to="`/${route_name}`" class="logo text-black"
         >Logo</router-link
       >
@@ -88,7 +88,7 @@ onMounted(() => {
     </header>
 
     <nav class="bg-gradient">
-      <div class="container-md navbar h-100 w-100 custom-navbar">
+      <div class="container-md navbar h-100 w-100 custom-navbar px-0">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
@@ -259,10 +259,13 @@ onMounted(() => {
 
 .choose {
   position: relative;
-  font-size: 2em;
   text-decoration: none;
   font-style: unset;
   margin-right: 1rem;
+}
+
+.choose:nth-last-child(1) {
+  margin-right: 0;
 }
 
 .choose::after {
