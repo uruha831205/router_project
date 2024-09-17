@@ -20,7 +20,8 @@ const select_data = choose_data.value.find(
     <div>{{ get_route.params }}</div>
     <div>{{ get_route.params.message }}</div>
     <div>{{ get_route.params.product_id }}</div>
-    <div>{{ select_data }}</div>
+    <!-- <div>{{ select_data }}</div> -->
+    <div>select_data's p_id : {{ select_data.p_id }}</div>
   </div>
 </template>
 

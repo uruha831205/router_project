@@ -1,0 +1,143 @@
+<script setup>
+import { onMounted, triggerRef } from "vue";
+
+import { storeToRefs } from "pinia";
+import { gun_shop } from "../stores/usePinia.js";
+
+const props = defineProps(["setBackColorGray"]);
+
+const gunshop = gun_shop();
+const { all_ShoppingCart_products } = storeToRefs(gunshop);
+
+function read_ShoppingCart() {
+  all_ShoppingCart_products.value =
+    JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
+}
+
+function clear_ShoppingCart() {
+  all_ShoppingCart_products.value = [];
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function reduce_quantuty(product) {
+  if (product.quantity != 1) {
+    product.quantity -= 1;
+  }
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function add_quantuty(product) {
+  if (product.quantity != 999) {
+    product.quantity += 1;
+  }
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function cancel_product(Index) {
+  const index = all_ShoppingCart_products.value.findIndex(
+    (item) => item.product.p_id == Index
+  );
+  all_ShoppingCart_products.value.splice(index, 1);
+  triggerRef(all_ShoppingCart_products);
+  save_all_ShoppingCart_products_in_localStorage();
+}
+
+function save_all_ShoppingCart_products_in_localStorage() {
+  localStorage.setItem(
+    "all_shopping_cart_products",
+    JSON.stringify(all_ShoppingCart_products.value)
+  );
+}
+
+onMounted(() => {
+  read_ShoppingCart();
+});
+</script>
+
+<template>
+  <div class="layout" :class="{ 'bg-secondary': props.setBackColorGray }">
+    <div class="p-2 overflow-auto" style="scrollbar-width: thin">
+      <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
+      <div
+        v-for="product in all_ShoppingCart_products"
+        class="row mb-2 align-items-center m-0"
+      >
+        <img :src="product.product.p_pic" alt="" class="col-3" />
+        <div class="col-3 text-center fw-bold">
+          {{ product.product.p_name }}
+        </div>
+        <div class="col-2 text-center fw-bold">
+          ${{ product.product.p_price * product.quantity }}
+        </div>
+        <div class="col-3 text-center d-flex justify-content-around">
+          <button
+            class="bg-white fw-bold shoppingCartPorduct-btn"
+            @click="reduce_quantuty(product)"
+            :disabled="product.quantity === 1"
+          >
+            -
+          </button>
+          <span class="fw-bold">{{ product.quantity }}</span>
+          <button
+            class="bg-white fw-bold shoppingCartPorduct-btn"
+            @click="add_quantuty(product)"
+            :disabled="product.quantity === 10"
+          >
+            +
+          </button>
+        </div>
+        <div class="col-1">
+          <img
+            src="../assets/cancel.svg"
+            class="shopping-cart-cancel-btn"
+            alt="cancel-btn"
+            @click="cancel_product(product.product.p_id)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="w-100 d-flex fs-5">
+      <button
+        @click="clear_ShoppingCart"
+        class="w-100 p-2 border-2 border-end border-dark shoppingCartList-btn"
+      >
+        清空商品
+      </button>
+      <button class="w-100 p-2 shoppingCartList-btn">前往結帳</button>
+    </div>
+  </div>
+</template>
+<style>
+.layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shoppingCartPorduct-btn {
+  user-select: none;
+  border-radius: 5px;
+  width: 20%;
+  cursor: pointer;
+}
+
+.shoppingCartList-btn {
+  user-select: none;
+  border: none;
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+.shoppingCartList-btn:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.shopping-cart-cancel-btn {
+  width: 80%;
+  user-select: none;
+  cursor: pointer;
+}
+</style>

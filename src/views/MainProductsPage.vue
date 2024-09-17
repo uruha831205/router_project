@@ -5,6 +5,8 @@ import { onMounted, ref, triggerRef } from "vue";
 import { storeToRefs } from "pinia";
 import { gun_shop } from "../stores/usePinia.js";
 
+import ShoppingCartList from "./ShoppingCartList.vue";
+
 //取得 pinia資料
 const gunshop = gun_shop();
 const { all_ShoppingCart_products } = storeToRefs(gunshop);
@@ -28,7 +30,7 @@ function toogle_ShoppingCart() {
   isOpen.value = !isOpen.value;
 }
 
-function read_ShoppingCart() {
+/*function read_ShoppingCart() {
   all_ShoppingCart_products.value =
     JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
 }
@@ -72,7 +74,7 @@ function save_all_ShoppingCart_products_in_localStorage() {
 
 onMounted(() => {
   read_ShoppingCart();
-});
+});*/
 </script>
 
 <template>
@@ -158,60 +160,53 @@ onMounted(() => {
     <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
 
     <div class="shopping-cart-list" :class="[{ show: isOpen }]">
-      <div class="p-2 overflow-auto" style="scrollbar-width: thin">
-        <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
-        <div
-          v-for="product in all_ShoppingCart_products"
-          class="row mb-2 align-items-center m-0"
-        >
-          <img :src="product.product.p_pic" alt="" class="col-3" />
-          <div class="col-3 text-center fw-bold">
-            {{ product.product.p_name }}
-          </div>
-          <div class="col-2 text-center fw-bold">
-            ${{ product.product.p_price * product.quantity }}
-          </div>
-          <div class="col-3 text-center d-flex justify-content-around">
-            <button
-              class="bg-white fw-bold shoppingCartPorduct-btn"
-              @click="reduce_quantuty(product)"
-              :disabled="product.quantity === 1"
-            >
-              -
-            </button>
-            <span class="fw-bold">{{ product.quantity }}</span>
-            <button
-              class="bg-white fw-bold shoppingCartPorduct-btn"
-              @click="add_quantuty(product)"
-              :disabled="product.quantity === 10"
-            >
-              +
-            </button>
-          </div>
-          <div class="col-1">
-            <img
-              src="../assets/cancel.svg"
-              class="shopping-cart-cancel-btn"
-              alt="cancel-btn"
-              @click="cancel_product(product.product.p_id)"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="w-100 d-flex">
-        <button
-          @click="clear_ShoppingCart"
-          class="w-100 p-2 border-end border-dark shoppingCartList-btn"
-        >
-          清空商品
-        </button>
-        <button class="w-100 p-2 shoppingCartList-btn">前往結帳</button>
-      </div>
+      <ShoppingCartList></ShoppingCartList>
+    </div>
+
+    <div class="shoppingCart-mobile" :class="{ show: isOpen }">
+      <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
+    </div>
+
+    <div class="member_shoppingCart_btn-mobile text-center fw-bold fs-5">
+      <router-link
+        :to="`/${route_name}/member`"
+        class="w-100 p-2 border-2 border-end border-dark text-dark text-decoration-none"
+        >會員中心</router-link
+      >
+      <div class="w-100 p-2" @click="toogle_ShoppingCart">購物車</div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.layout {
+  position: relative;
+}
+
+.shoppingCart-mobile {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  z-index: 10;
+  transition: 0.4s;
+  transform: translateX(-100%);
+}
+
+.shoppingCart-mobile.show {
+  transform: translateX(0);
+}
+
+.member_shoppingCart_btn-mobile {
+  display: none;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 9;
+  background-color: gray;
+}
+
 .logo {
   font-size: 3rem;
   font-weight: bold;
@@ -359,16 +354,13 @@ onMounted(() => {
   color: black;
   overflow: hidden;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .shopping-cart-list.show {
   transform: scale(1);
 }
 
-.shoppingCartPorduct-btn {
+/*.shoppingCartPorduct-btn {
   user-select: none;
   border-radius: 5px;
   width: 20%;
@@ -390,7 +382,7 @@ onMounted(() => {
   width: 80%;
   user-select: none;
   cursor: pointer;
-}
+}*/
 
 header {
   height: 10vh;
@@ -432,6 +424,22 @@ footer {
 
   header {
     padding: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .shoppingCart-mobile {
+    display: block;
+  }
+
+  .member,
+  .shopping-cart,
+  .shopping-cart-list {
+    display: none;
+  }
+
+  .member_shoppingCart_btn-mobile {
+    display: flex;
   }
 }
 
