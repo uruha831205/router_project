@@ -1,5 +1,5 @@
 [build]
-  publish = "_dist"  # 設定發佈目錄
+  publish = "dist"  # 設定發佈指定目錄
 
 [[redirects]]
   from = "/*"
