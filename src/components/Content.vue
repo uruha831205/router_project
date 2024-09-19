@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { gun_shop } from "../stores/usePinia.js";
+import { gun_shop } from "@/stores/usePinia.js";
 import { ref, shallowRef, watch, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();

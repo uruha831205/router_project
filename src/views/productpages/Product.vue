@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
-import { gun_shop } from "../../stores/usePinia.js";
+import { gun_shop } from "@/stores/usePinia.js";
 
 const get_route = useRoute();
 const gunshop = gun_shop();

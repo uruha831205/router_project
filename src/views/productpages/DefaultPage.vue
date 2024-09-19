@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
 import { storeToRefs } from "pinia";
-import { gun_shop } from "../../stores/usePinia.js";
+import { gun_shop } from "@/stores/usePinia.js";
 
 //取得路由資料
 const get_route = useRoute();
@@ -24,14 +24,14 @@ const gunshop = gun_shop();
 const { airsoft_datas, real_datas } = storeToRefs(gunshop);
 
 const airsoft = [
-  new URL("../../assets/img/airsoft_new/airsoft_new_1.jpg", import.meta.url),
-  new URL("../../assets/img/airsoft_new/airsoft_new_2.jpg", import.meta.url),
-  new URL("../../assets/img/airsoft_new/airsoft_new_3.jpg", import.meta.url),
+  new URL("@/assets/img/airsoft_new/airsoft_new_1.jpg", import.meta.url),
+  new URL("@/assets/img/airsoft_new/airsoft_new_2.jpg", import.meta.url),
+  new URL("@/assets/img/airsoft_new/airsoft_new_3.jpg", import.meta.url),
 ];
 const real = [
-  new URL("../../assets/img/real_new/real_new_1.jpg", import.meta.url),
-  new URL("../../assets/img/real_new/real_new_2.jpg", import.meta.url),
-  new URL("../../assets/img/real_new/real_new_3.jpg", import.meta.url),
+  new URL("@/assets/img/real_new/real_new_1.jpg", import.meta.url),
+  new URL("@/assets/img/real_new/real_new_2.jpg", import.meta.url),
+  new URL("@/assets/img/real_new/real_new_3.jpg", import.meta.url),
 ];
 
 const choose = computed(() => {
@@ -86,10 +86,10 @@ const show_datas = computed(() => {
         />
       </swiper-slide>
       <div class="custom-prev">
-        <img src="../../assets/angle-left-solid.svg" alt="Previous" />
+        <img src="@/assets/angle-left-solid.svg" alt="Previous" />
       </div>
       <div class="custom-next">
-        <img src="../../assets/angle-right-solid.svg" alt="Next" />
+        <img src="@/assets/angle-right-solid.svg" alt="Next" />
       </div>
     </swiper>
 

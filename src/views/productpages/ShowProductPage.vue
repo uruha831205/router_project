@@ -1,8 +1,8 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { watch, ref } from "vue";
-import psidebar from "../../components/SideBar.vue";
-import pcontent from "../../components/Content.vue";
+import psidebar from "@/components/SideBar.vue";
+import pcontent from "@/components/Content.vue";
 const get_route = useRoute();
 
 // const route_item = ref(get_route.params);

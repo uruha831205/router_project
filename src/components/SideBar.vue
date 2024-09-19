@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive } from "vue";
 import { storeToRefs } from "pinia";
-import { gun_shop } from "../stores/usePinia.js";
+import { gun_shop } from "@/stores/usePinia.js";
 const gunshop = gun_shop();
 const { guns, parts, components, equipments } = storeToRefs(gunshop);
 

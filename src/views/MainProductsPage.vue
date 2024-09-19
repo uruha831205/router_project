@@ -2,14 +2,7 @@
 import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref, triggerRef } from "vue";
 
-import { storeToRefs } from "pinia";
-import { gun_shop } from "../stores/usePinia.js";
-
-import ShoppingCartList from "./ShoppingCartList.vue";
-
-//取得 pinia資料
-const gunshop = gun_shop();
-const { all_ShoppingCart_products } = storeToRefs(gunshop);
+import ShoppingCartList from "@/components/ShoppingCartList.vue";
 
 const get_route = useRoute();
 const get_router = useRouter();
@@ -29,52 +22,6 @@ function clickToogle() {
 function toogle_ShoppingCart() {
   isOpen.value = !isOpen.value;
 }
-
-/*function read_ShoppingCart() {
-  all_ShoppingCart_products.value =
-    JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
-}
-
-function clear_ShoppingCart() {
-  all_ShoppingCart_products.value = [];
-  save_all_ShoppingCart_products_in_localStorage();
-}
-
-function reduce_quantuty(product) {
-  if (product.quantity != 1) {
-    product.quantity -= 1;
-  }
-  triggerRef(all_ShoppingCart_products);
-  save_all_ShoppingCart_products_in_localStorage();
-}
-
-function add_quantuty(product) {
-  if (product.quantity != 999) {
-    product.quantity += 1;
-  }
-  triggerRef(all_ShoppingCart_products);
-  save_all_ShoppingCart_products_in_localStorage();
-}
-
-function cancel_product(Index) {
-  const index = all_ShoppingCart_products.value.findIndex(
-    (item) => item.product.p_id == Index
-  );
-  all_ShoppingCart_products.value.splice(index, 1);
-  triggerRef(all_ShoppingCart_products);
-  save_all_ShoppingCart_products_in_localStorage();
-}
-
-function save_all_ShoppingCart_products_in_localStorage() {
-  localStorage.setItem(
-    "all_shopping_cart_products",
-    JSON.stringify(all_ShoppingCart_products.value)
-  );
-}
-
-onMounted(() => {
-  read_ShoppingCart();
-});*/
 </script>
 
 <template>
@@ -119,7 +66,7 @@ onMounted(() => {
         </div>
 
         <div class="search-bar d-flex">
-          <div class="toggle-area mx-1 fs-1" @click="clickToogle()">
+          <div class="toggle-area me-1 display-3" @click="clickToogle()">
             <i class="bi bi-list"></i>
           </div>
           <div class="search-area w-100">
@@ -163,7 +110,12 @@ onMounted(() => {
       <ShoppingCartList></ShoppingCartList>
     </div>
 
-    <div class="shoppingCart-mobile" :class="{ show: isOpen }">
+    <div class="shoppingCart-mobile" :class="[{ show: isOpen }]">
+      <div
+        class="shoppingCart-mobile-overlay"
+        :class="[{ show: isOpen }]"
+        @click="toogle_ShoppingCart"
+      ></div>
       <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
     </div>
 
@@ -189,13 +141,29 @@ onMounted(() => {
   top: 0;
   width: 80%;
   height: 100%;
+  transition: 0.3s;
+  left: -100%;
   z-index: 10;
-  transition: 0.4s;
-  transform: translateX(-100%);
 }
 
 .shoppingCart-mobile.show {
-  transform: translateX(0);
+  left: 0;
+}
+
+.shoppingCart-mobile-overlay {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.6;
+  z-index: 0;
+  transition: 0.2s;
+}
+
+.shoppingCart-mobile-overlay.show {
+  right: 0%;
 }
 
 .member_shoppingCart_btn-mobile {
@@ -203,8 +171,8 @@ onMounted(() => {
   width: 100%;
   position: fixed;
   bottom: 0;
-  z-index: 9;
   background-color: gray;
+  z-index: 9;
 }
 
 .logo {

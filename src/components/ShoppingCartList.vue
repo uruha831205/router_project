@@ -2,7 +2,7 @@
 import { onMounted, triggerRef } from "vue";
 
 import { storeToRefs } from "pinia";
-import { gun_shop } from "../stores/usePinia.js";
+import { gun_shop } from "@/stores/usePinia.js";
 
 const props = defineProps(["setBackColorGray"]);
 
@@ -22,6 +22,11 @@ function clear_ShoppingCart() {
 function reduce_quantuty(product) {
   if (product.quantity != 1) {
     product.quantity -= 1;
+  } else if (product.quantity == 1) {
+    let answer = confirm("是否確認移除商品?");
+    if (answer) {
+      cancel_product(product.product.p_id);
+    }
   }
   triggerRef(all_ShoppingCart_products);
   save_all_ShoppingCart_products_in_localStorage();
@@ -64,38 +69,51 @@ onMounted(() => {
         v-for="product in all_ShoppingCart_products"
         class="row mb-2 align-items-center m-0"
       >
-        <img :src="product.product.p_pic" alt="" class="col-3" />
-        <div class="col-3 text-center fw-bold">
-          {{ product.product.p_name }}
+        <img
+          :src="product.product.p_pic"
+          alt=""
+          class="col-4 col-sm-3"
+          height="90rem"
+          style="object-fit: contain"
+        />
+        <div
+          class="col-8 col-sm-9 d-flex flex-column justify-content-around"
+          style="height: 100px"
+        >
+          <div class="col-12 fw-bold">
+            {{ product.product.p_name }}
+          </div>
+          <div class="row">
+            <div class="col-4 col-sm-5 fw-bold">
+              ${{ product.product.p_price * product.quantity }}
+            </div>
+            <div class="col-8 col-sm-7 d-flex justify-content-around">
+              <button
+                class="bg-white fw-bold shoppingCartPorduct-btn"
+                @click="reduce_quantuty(product)"
+              >
+                -
+              </button>
+              <span class="fw-bold">{{ product.quantity }}</span>
+              <button
+                class="bg-white fw-bold shoppingCartPorduct-btn"
+                @click="add_quantuty(product)"
+                :disabled="product.quantity === 10"
+              >
+                +
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="col-2 text-center fw-bold">
-          ${{ product.product.p_price * product.quantity }}
-        </div>
-        <div class="col-3 text-center d-flex justify-content-around">
-          <button
-            class="bg-white fw-bold shoppingCartPorduct-btn"
-            @click="reduce_quantuty(product)"
-            :disabled="product.quantity === 1"
-          >
-            -
-          </button>
-          <span class="fw-bold">{{ product.quantity }}</span>
-          <button
-            class="bg-white fw-bold shoppingCartPorduct-btn"
-            @click="add_quantuty(product)"
-            :disabled="product.quantity === 10"
-          >
-            +
-          </button>
-        </div>
-        <div class="col-1">
+
+        <!-- <div class="col-1">
           <img
-            src="../assets/cancel.svg"
-            class="shopping-cart-cancel-btn"
+            src="@/assets/cancel.svg"
+            class="shopping-cart-cancel-btn display-2"
             alt="cancel-btn"
             @click="cancel_product(product.product.p_id)"
           />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="w-100 d-flex fs-5">

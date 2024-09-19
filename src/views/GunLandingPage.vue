@@ -124,14 +124,14 @@ const setBoxZindex = (choose) => {
 .airsoft-pic {
   width: 100%;
   height: 100%;
-  background: url("../assets/img/bb_bullet.jpg");
+  background: url("@/assets/img/bb_bullet.jpg");
   background-size: cover;
 }
 
 .any-pic {
   width: 100%;
   height: 100%;
-  background: url("../assets/img/dog.png");
+  background: url("@/assets/img/dog.png");
   background-position: center;
   background-size: cover;
   display: flex;
@@ -141,7 +141,7 @@ const setBoxZindex = (choose) => {
 .real-pic {
   width: 100%;
   height: 100%;
-  background: url("../assets/img/real_bullet.jpeg");
+  background: url("@/assets/img/real_bullet.jpeg");
   background-position: right;
   background-size: cover;
   z-index: 1;
