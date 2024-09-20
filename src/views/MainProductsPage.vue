@@ -40,24 +40,28 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
+            @click="clickToogle"
             class="choose text-black fw-bold fs-3"
             replace
             >長槍短槍</router-link
           >
           <router-link
             :to="`/${route_name}/part`"
+            @click="clickToogle"
             class="choose text-black fw-bold fs-3"
             replace
             >內部零件</router-link
           >
           <router-link
             :to="`/${route_name}/component`"
+            @click="clickToogle"
             class="choose text-black fw-bold fs-3"
             replace
             >外部配件</router-link
           >
           <router-link
             :to="`/${route_name}/equipment`"
+            @click="clickToogle"
             class="choose text-black fw-bold fs-3"
             replace
             >人身裝備</router-link

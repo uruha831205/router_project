@@ -197,7 +197,7 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_fornt: "",
       p_color: "black,green",
       p_pic:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIF2Py5UvX61e0niAdUxwgeUZwFPK9IKJnVA&s",
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
       p_new: "2024/9/01",
     },
     {
@@ -252,7 +252,7 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_fornt: "",
       p_color: "black,green",
       p_pic:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIF2Py5UvX61e0niAdUxwgeUZwFPK9IKJnVA&s",
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
       p_new: "2024/9/08",
     },
     {
