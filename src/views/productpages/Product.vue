@@ -14,6 +14,14 @@ const choose_data =
 const select_data = choose_data.value.find(
   (product) => product.p_id === get_route.params.product_id
 );
+
+function add_product_to_Cart(product) {
+  gunshop.add_products(product);
+  localStorage.setItem(
+    "all_shopping_cart_products",
+    JSON.stringify(all_ShoppingCart_products.value)
+  );
+}
 </script>
 
 <template>
@@ -42,7 +50,10 @@ const select_data = choose_data.value.find(
           />
           <span class="ms-2">目前{{ select_data.p_stock }}人評論</span>
         </div>
-        <button class="btn btn-lg btn-secondary w-100 rounded-pill">
+        <button
+          @click="add_product_to_Cart(select_data)"
+          class="btn btn-lg btn-secondary w-100 rounded-pill"
+        >
           加入購物車
         </button>
         <hr />
