@@ -1,34 +1,8 @@
-<script setup>
-import { ref } from "vue";
-
-const airsoftZIndex = ref(0);
-const anyZIndex = ref(0);
-const realZIndex = ref(0);
-
-const setBoxZindex = (choose) => {
-  if (choose === "airsoft") {
-    airsoftZIndex.value = 2;
-    anyZIndex.value = 1;
-    realZIndex.value = 1;
-  } else if (choose === "any") {
-    anyZIndex.value = 2;
-    airsoftZIndex.value = 1;
-    realZIndex.value = 1;
-  } else if (choose === "real") {
-    realZIndex.value = 2;
-    airsoftZIndex.value = 1;
-    anyZIndex.value = 1;
-  }
-};
-</script>
+<script setup></script>
 
 <template>
-  <main class="layout">
-    <router-link
-      class="box airsoft-gun"
-      to="/airsoft"
-      @mouseenter="setBoxZindex('airsoft')"
-    >
+  <main class="landingPage-layout">
+    <router-link class="box airsoft-gun" to="/airsoft">
       <div class="pic airsoft-pic">
         <div class="description">
           <div class="title">生存遊戲</div>
@@ -46,11 +20,7 @@ const setBoxZindex = (choose) => {
       </div>
     </router-link> -->
 
-    <router-link
-      class="box real-gun"
-      to="/real"
-      @mouseenter="setBoxZindex('real')"
-    >
+    <router-link class="box real-gun" to="/real">
       <div class="pic real-pic">
         <div class="description">
           <div class="title">真實槍枝</div>
@@ -62,9 +32,8 @@ const setBoxZindex = (choose) => {
 </template>
 
 <style scoped>
-.layout {
+.landingPage-layout {
   display: flex;
-  width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -74,13 +43,13 @@ const setBoxZindex = (choose) => {
 }
 
 @media screen and (max-width: 900px) {
-  .layout {
+  .landingPage-layout {
     flex-direction: column;
     font-size: 10px;
   }
 }
 
-.layout:hover .pic:not(:hover) {
+.landingPage-layout:hover .pic:not(:hover) {
   filter: blur(2px);
   opacity: 0.2;
 }
@@ -145,18 +114,6 @@ const setBoxZindex = (choose) => {
   background-position: right;
   background-size: cover;
   z-index: 1;
-}
-
-.airsoft-gun:hover {
-  z-index: v-bind(airsoftZIndex);
-}
-
-.any:hover {
-  z-index: v-bind(anyZIndex);
-}
-
-.real-gun:hover {
-  z-index: v-bind(realZIndex);
 }
 
 .airsoft-pic .description {

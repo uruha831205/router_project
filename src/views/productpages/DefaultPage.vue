@@ -49,11 +49,6 @@ const show_datas = computed(() => {
     return real_datas.value;
   }
 });
-
-//偵測 swiper 滑動: 滑動到該圖才執行該CSS設定
-// const onSlideChange = (swiper) => {
-//   activeSlide.value = swiper.realIndex;
-// };
 </script>
 
 <template>
@@ -76,8 +71,6 @@ const show_datas = computed(() => {
       class="my-2"
     >
       <swiper-slide v-for="(product, index) in choose" :key="index">
-        <!-- :class="{ 'img-animation': index === activeSlide }" -->
-        <!-- class="img-animation" -->
         <img
           :src="product"
           style="object-fit: cover; cursor: pointer"

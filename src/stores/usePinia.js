@@ -196,7 +196,8 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_stock: 10,
       p_fornt: "",
       p_color: "black,green",
-      p_pic: "https://lfj.com.tw/wp/wp-content/uploads/22224415520975_505.jpg",
+      p_pic:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIF2Py5UvX61e0niAdUxwgeUZwFPK9IKJnVA&s",
       p_new: "2024/9/01",
     },
     {
@@ -250,7 +251,8 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_stock: 10,
       p_fornt: "",
       p_color: "black,green",
-      p_pic: "https://lfj.com.tw/wp/wp-content/uploads/22224415520975_505.jpg",
+      p_pic:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIF2Py5UvX61e0niAdUxwgeUZwFPK9IKJnVA&s",
       p_new: "2024/9/08",
     },
     {
@@ -270,7 +272,7 @@ export const gun_shop = defineStore("gun_shop", () => {
   ]);
 
   //購物車內的商品
-  //all_ShoppingCart_products 內的基礎變數: 型別{product: object, quantity: int}
+  //all_ShoppingCart_products 內的基礎變數: 型別 => { product: object, quantity: int }
   const all_ShoppingCart_products = shallowRef([]);
 
   //增加商品至購物車

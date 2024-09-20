@@ -6,14 +6,9 @@ import ShoppingCartList from "@/components/ShoppingCartList.vue";
 
 const get_route = useRoute();
 const get_router = useRouter();
-const toogle = ref(false);
-
 const route_name = get_route.params.message;
+const toogle = ref(false);
 const isOpen = ref(false);
-
-if (!["airsoft", "real", "member"].includes(route_name)) {
-  get_router.replace("/404");
-}
 
 function clickToogle() {
   toogle.value = !toogle.value;
@@ -21,6 +16,10 @@ function clickToogle() {
 
 function toogle_ShoppingCart() {
   isOpen.value = !isOpen.value;
+}
+
+if (!["airsoft", "real", "member"].includes(route_name)) {
+  get_router.replace("/404");
 }
 </script>
 
@@ -36,7 +35,7 @@ function toogle_ShoppingCart() {
       >
     </header>
 
-    <nav class="bg-gradient">
+    <nav class="bg-gradient sticky-top">
       <div class="container-md navbar h-100 w-100 custom-navbar px-0">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
@@ -81,11 +80,10 @@ function toogle_ShoppingCart() {
           </div>
         </div>
       </div>
+      <div class="run-horse-bar bg-gradient">
+        <div class="run-horse-words">新品即將進貨!!</div>
+      </div>
     </nav>
-
-    <div class="run-horse-bar bg-gradient">
-      <div class="run-horse-words">新品即將進貨!!</div>
-    </div>
 
     <div class="router-view-area">
       <router-view></router-view>
@@ -122,10 +120,12 @@ function toogle_ShoppingCart() {
     <div class="member_shoppingCart_btn-mobile text-center fw-bold fs-5">
       <router-link
         :to="`/${route_name}/member`"
-        class="w-100 p-2 border-2 border-end border-dark text-dark text-decoration-none"
+        class="w-100 p-2 border-2 border-end border-dark text-dark text-decoration-none bg-gradient"
         >會員中心</router-link
       >
-      <div class="w-100 p-2" @click="toogle_ShoppingCart">購物車</div>
+      <div class="w-100 p-2 bg-gradient" @click="toogle_ShoppingCart">
+        購物車
+      </div>
     </div>
   </div>
 </template>
