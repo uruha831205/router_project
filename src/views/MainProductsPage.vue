@@ -36,7 +36,7 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
     </header>
 
     <nav class="bg-gradient sticky-top">
-      <div class="container-md navbar h-100 w-100 custom-navbar px-0">
+      <div class="container-md navbar h-100 w-100 custom-navbar">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
@@ -373,6 +373,7 @@ footer {
   .custom-navbar {
     display: flex;
     flex-direction: column;
+    padding-inline: 0.5rem;
   }
 
   .link-bar {
@@ -384,10 +385,6 @@ footer {
 
   .search-bar {
     width: 100%;
-  }
-
-  nav {
-    padding-inline: 0.5rem;
   }
 
   header {
