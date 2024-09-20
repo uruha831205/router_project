@@ -143,7 +143,7 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
   height: 100%;
   transition: 0.3s;
   left: -100%;
-  z-index: 10;
+  z-index: 1040;
 }
 
 .shoppingCart-mobile.show {
@@ -305,7 +305,7 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
   box-shadow: 0 0 6px black;
   user-select: none;
   cursor: pointer;
-  z-index: 2;
+  z-index: 10;
 }
 
 .shopping-cart-list {
@@ -321,7 +321,7 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
   transition: 0.5s;
   color: black;
   overflow: hidden;
-  z-index: 2;
+  z-index: 10;
 }
 
 .shopping-cart-list.show {
