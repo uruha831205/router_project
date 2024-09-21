@@ -61,7 +61,7 @@ function add_product_to_Cart(product) {
           >
             <img
               :src="product"
-              style="object-fit: cover; cursor: pointer; width: 70%"
+              style="object-fit: contain; cursor: pointer; width: 70%"
               alt="Product image "
             />
           </swiper-slide>
@@ -81,7 +81,7 @@ function add_product_to_Cart(product) {
             <img
               :src="product"
               style="object-fit: cover; cursor: pointer; border-radius: 15px"
-              class="w-100 thumbs-swiper-slide"
+              class="w-100 thumbs-img"
               :class="{ 'active-thumb': currentThumbIndex === index }"
               alt="Product image"
             />
@@ -89,7 +89,7 @@ function add_product_to_Cart(product) {
         </swiper>
       </div>
 
-      <div class="col-12 col-lg-5 py-4">
+      <div class="col-12 col-lg-4 offset-lg-1 py-4">
         <h5 class="mb-2 fw-bold" style="color: rgba(90, 90, 90)">
           {{ select_data.p_son_kind }}, {{ select_data.p_brand }}
         </h5>
@@ -104,6 +104,13 @@ function add_product_to_Cart(product) {
           />
           <span class="ms-2">目前{{ select_data.p_stock }}人評論</span>
         </div>
+
+        <!-- <div style="width: 100%" class="btn btn-info mb-3">
+          <button>-</button>
+          <input style="border: none" />
+          <button>+</button>
+        </div> -->
+
         <button
           @click="add_product_to_Cart(select_data)"
           class="btn btn-lg btn-secondary w-100 rounded-pill fw-bold"
@@ -115,24 +122,30 @@ function add_product_to_Cart(product) {
         <div>
           <div class="fw-bold my-1">分享此商品</div>
           <div>
-            <img
-              src="@/assets/icon/IG.png"
-              width="40rem"
-              class="rounded-pill me-3 mt-2"
-              alt=""
-            />
-            <img
-              src="@/assets/icon/thread.png"
-              width="40rem"
-              class="rounded-pill me-3 mt-2"
-              alt=""
-            />
-            <img
-              src="@/assets/icon/FB.avif"
-              width="40rem"
-              class="rounded-pill mt-2"
-              alt=""
-            />
+            <a href="#">
+              <img
+                src="@/assets/icon/IG.png"
+                width="40rem"
+                class="rounded-pill me-3 mt-2"
+                alt=""
+              />
+            </a>
+            <a href="#">
+              <img
+                src="@/assets/icon/thread.png"
+                width="40rem"
+                class="rounded-pill me-3 mt-2"
+                alt=""
+              />
+            </a>
+            <a href="#">
+              <img
+                src="@/assets/icon/FB.avif"
+                width="40rem"
+                class="rounded-pill mt-2"
+                alt=""
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -141,7 +154,7 @@ function add_product_to_Cart(product) {
         <Tabs value="0">
           <TabList>
             <Tab value="0" style="font-size: 20px">商品詳圖</Tab>
-            <Tab value="1" style="font-size: 20px">商品規格</Tab>
+            <Tab value="1" style="font-size: 20px">商品描述</Tab>
             <Tab value="2" style="font-size: 20px">購物須知</Tab>
           </TabList>
           <TabPanels>
@@ -157,28 +170,26 @@ function add_product_to_Cart(product) {
               </div>
             </TabPanel>
             <TabPanel value="1">
-              <p class="m-0">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi
-                nesciunt. Consectetur, adipisci velit, sed quia non numquam eius
-                modi.
-              </p>
+              {{ select_data.p_describtion }}
             </TabPanel>
-            <TabPanel value="2">
-              <p class="m-0">
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                blanditiis praesentium voluptatum deleniti atque corrupti quos
-                dolores et quas molestias excepturi sint occaecati cupiditate
-                non provident, similique sunt in culpa qui officia deserunt
-                mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                rerum facilis est et expedita distinctio. Nam libero tempore,
-                cum soluta nobis est eligendi optio cumque nihil impedit quo
-                minus.
-              </p>
+            <TabPanel value="2" class="p-3 fw-bold">
+              <h5 class="my-2 fw-bold">商品購物須知</h5>
+              <div>
+                我們提供各式生存遊戲商品，包括但不限於玩具槍、戰術背心、防護裝備、配件等。所有產品均為合法的娛樂用途，僅限18歲以上成人購買。
+              </div>
+              <div>
+                所有生存遊戲商品僅供戶外或專業場地使用，禁止在公共場所、學校等敏感區域使用，以避免引發不必要的誤會或法律問題。
+              </div>
+              <div>
+                請勿修改玩具槍的外觀或功能，這可能導致產品不符合安全標準，並有可能違反當地法律。
+              </div>
+              <h5 class="my-2 fw-bold">退貨政策</h5>
+              <div>
+                根據產品狀況，若因商品瑕疵或運送過程中的損壞，我們將提供換貨或退貨服務。
+              </div>
+              <div>
+                若因個人原因不滿意商品，請確保商品未使用且包裝完整，在購買7天內提出申請，我們將根據具體情況處理退換貨事宜。
+              </div>
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -192,15 +203,15 @@ function add_product_to_Cart(product) {
   opacity: 1; /* 活動縮略圖不透明 */
 }
 
-.thumbs-swiper-slide {
+.thumbs-img {
   transition: 0.3s;
 }
 
-.thumbs-swiper-slide:not(.active-thumb) {
+.thumbs-img:not(.active-thumb) {
   opacity: 0.5; /* 非活動縮略圖半透明 */
 }
 
-.thumbs-swiper-slide:not(.active-thumb):hover {
+.thumbs-img:not(.active-thumb):hover {
   transition: 0.2s;
   opacity: 0.8;
 }

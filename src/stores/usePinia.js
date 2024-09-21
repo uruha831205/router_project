@@ -169,9 +169,15 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_stock: 3,
       p_fornt: "",
       p_color: "",
-      p_pic:
-        "https://upload.wikimedia.org/wikipedia/commons/6/65/AK-47_type_II_noBG.png",
+      p_pic: "https://cdn.britannica.com/70/123170-050-D7AAF458/AK-47.jpg",
       p_new: "2024/9/10",
+      p_other_pics: [
+        "https://cdn.britannica.com/70/123170-050-D7AAF458/AK-47.jpg",
+        "https://cdn11.bigcommerce.com/s-wkf3yob290/images/stencil/1280x1280/products/1211/14494/NEDI_AK47_1__66854.1674565080.png?c=2",
+        "https://www.jbmilitaryantiques.com.au/wp-content/uploads/2018/02/H20235-L280619616_original-scaled.jpg",
+      ],
+      p_describtion:
+        "AK發射7.62×39公釐中間型威力槍彈，由容量為30發子彈的弧形彈匣供彈，其保險／射擊選擇桿的設計則參考自美國雷明頓8型半自動步槍，設置在機匣右側，可以選擇半自動或者全自動的發射方式，槍機拉柄位於機匣右側，為槍機座的一部份。AK的槍機動作可靠，即使在連續射擊時有灰塵等異物進入槍內，它的機械結構仍能保證繼續正常運作，並可以在沙漠、熱帶雨林、嚴寒等極度惡劣的環境下保持相當好的效能，而且它的結構簡單，易於分解、清潔和維修，操作簡便。",
     },
     {
       p_id: "R002",
@@ -185,6 +191,13 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_color: "",
       p_pic: "https://cf.shopee.tw/file/cdfc5b403ba2ef0320ab780618aa3473",
       p_new: "2024/9/10",
+      p_other_pics: [
+        "https://cf.shopee.tw/file/cdfc5b403ba2ef0320ab780618aa3473",
+        "https://www.aawee.fi/storage/product_images/2/GeisseleSuper3GUNAR-15laukaisukoneisto_854014005052_2390c0d7e8ac_4.webp",
+        "https://sonsoflibertygw.com/wp-content/uploads/2024/06/L2S-White-1.jpg",
+      ],
+      p_describtion:
+        "MEC Pro Trigger可以輕鬆實現更緊密的扳機拉力。直板扳機設計提供了短拉幾何形狀。",
     },
     {
       p_id: "R003",
@@ -199,6 +212,12 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_pic:
         "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
       p_new: "2024/9/01",
+      p_other_pics: [
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313.webp?v=1690344275&width=500",
+      ],
+      p_describtion:
+        "PTS Enhanced Polymer M4 Grip - Compact (EPG-C) 是一款簡單但功能強大的 M4/M16 平台專用聚合物手槍握把。它具有人體工學設計的形狀和獨特的紋理，經過優化，即使在惡劣環境下也能提供強大且合適的握把力。此外，EPG-C 的握把角度比標準的 M4 握把更小，更適合現代卡賓槍戰鬥和近距離作戰姿勢。這種握把角度有助於減輕手腕的負擔，並有助於將手放在更接近扳機位置，以獲得更好的扳機控制。它能讓使用者在將槍托完全折疊或完全伸展的情況下同樣舒適地操作槍械。",
     },
     {
       p_id: "R004",
@@ -218,7 +237,11 @@ export const gun_shop = defineStore("gun_shop", () => {
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aebc61be.jpeg",
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aed3a232.jpeg",
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aee8d5f4.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9ae8ebfd9.jpeg",
       ],
+      p_describtion: `以靈活舒適做為出發點設計
+         由500D尼龍材料製成，具有極佳耐磨性，服貼舒適的角度設計，使其既舒適又靈活，讓穿戴時彷彿與自身融為一體。
+          Tactec戰術背心內部為考量使用舒適度，正反面皆有透氣網格襯墊，在雙肩更是特別加厚達到有效減壓效果。`,
     },
     {
       p_id: "R005",
@@ -230,9 +253,17 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_stock: 3,
       p_fornt: "",
       p_color: "",
-      p_pic:
-        "https://upload.wikimedia.org/wikipedia/commons/6/65/AK-47_type_II_noBG.png",
+      // p_pic:
+      //   "https://upload.wikimedia.org/wikipedia/commons/6/65/AK-47_type_II_noBG.png",
+      p_pic: "https://cdn.britannica.com/70/123170-050-D7AAF458/AK-47.jpg",
       p_new: "2024/9/07",
+      p_other_pics: [
+        "https://cdn.britannica.com/70/123170-050-D7AAF458/AK-47.jpg",
+        "https://cdn11.bigcommerce.com/s-wkf3yob290/images/stencil/1280x1280/products/1211/14494/NEDI_AK47_1__66854.1674565080.png?c=2",
+        "https://www.jbmilitaryantiques.com.au/wp-content/uploads/2018/02/H20235-L280619616_original-scaled.jpg",
+      ],
+      p_describtion:
+        "AK發射7.62×39公釐中間型威力槍彈，由容量為30發子彈的弧形彈匣供彈，其保險／射擊選擇桿的設計則參考自美國雷明頓8型半自動步槍，設置在機匣右側，可以選擇半自動或者全自動的發射方式，槍機拉柄位於機匣右側，為槍機座的一部份。AK的槍機動作可靠，即使在連續射擊時有灰塵等異物進入槍內，它的機械結構仍能保證繼續正常運作，並可以在沙漠、熱帶雨林、嚴寒等極度惡劣的環境下保持相當好的效能，而且它的結構簡單，易於分解、清潔和維修，操作簡便。",
     },
     {
       p_id: "R006",
@@ -246,6 +277,13 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_color: "",
       p_pic: "https://cf.shopee.tw/file/cdfc5b403ba2ef0320ab780618aa3473",
       p_new: "2024/9/10",
+      p_other_pics: [
+        "https://cf.shopee.tw/file/cdfc5b403ba2ef0320ab780618aa3473",
+        "https://www.aawee.fi/storage/product_images/2/GeisseleSuper3GUNAR-15laukaisukoneisto_854014005052_2390c0d7e8ac_4.webp",
+        "https://sonsoflibertygw.com/wp-content/uploads/2024/06/L2S-White-1.jpg",
+      ],
+      p_describtion:
+        "MEC Pro Trigger可以輕鬆實現更緊密的扳機拉力。直板扳機設計提供了短拉幾何形狀。",
     },
     {
       p_id: "R007",
@@ -260,6 +298,12 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_pic:
         "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
       p_new: "2024/9/08",
+      p_other_pics: [
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313-1.webp?v=1690344275&width=1000",
+        "https://pts-steelshop.com.tw/cdn/shop/products/PT124450313.webp?v=1690344275&width=500",
+      ],
+      p_describtion:
+        "PTS Enhanced Polymer M4 Grip - Compact (EPG-C) 是一款簡單但功能強大的 M4/M16 平台專用聚合物手槍握把。它具有人體工學設計的形狀和獨特的紋理，經過優化，即使在惡劣環境下也能提供強大且合適的握把力。此外，EPG-C 的握把角度比標準的 M4 握把更小，更適合現代卡賓槍戰鬥和近距離作戰姿勢。這種握把角度有助於減輕手腕的負擔，並有助於將手放在更接近扳機位置，以獲得更好的扳機控制。它能讓使用者在將槍托完全折疊或完全伸展的情況下同樣舒適地操作槍械。",
     },
     {
       p_id: "R008",
@@ -279,7 +323,11 @@ export const gun_shop = defineStore("gun_shop", () => {
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aebc61be.jpeg",
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aed3a232.jpeg",
         "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aee8d5f4.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9ae8ebfd9.jpeg",
       ],
+      p_describtion: `以靈活舒適做為出發點設計
+         由500D尼龍材料製成，具有極佳耐磨性，服貼舒適的角度設計，使其既舒適又靈活，讓穿戴時彷彿與自身融為一體。
+          Tactec戰術背心內部為考量使用舒適度，正反面皆有透氣網格襯墊，在雙肩更是特別加厚達到有效減壓效果。`,
     },
   ]);
 

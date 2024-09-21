@@ -9,6 +9,7 @@ const get_router = useRouter();
 const route_name = get_route.params.message;
 const toogle = ref(false);
 const isOpen = ref(false);
+const gotTopubttonisShow = ref(false);
 
 function clickToogle() {
   toogle.value = !toogle.value;
@@ -18,9 +19,24 @@ function toogle_ShoppingCart() {
   isOpen.value = !isOpen.value;
 }
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function handleScroll() {
+  gotTopubttonisShow.value = window.scrollY >= 800;
+}
+
 if (!["airsoft", "real", "member"].includes(route_name)) {
   get_router.replace("/404");
 }
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
@@ -106,7 +122,17 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
       </main>
     </footer>
 
-    <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
+    <div class="mainPageToolButton">
+      <div
+        class="goTopButton"
+        :class="{ show: gotTopubttonisShow }"
+        @click="scrollToTop"
+      >
+        <i class="bi bi-arrow-bar-up"></i>
+      </div>
+
+      <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
+    </div>
 
     <div class="shopping-cart-list" :class="[{ show: isOpen }]">
       <ShoppingCartList></ShoppingCartList>
@@ -127,6 +153,7 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
         class="w-100 p-2 border-2 border-end border-dark text-dark text-decoration-none bg-gradient"
         >會員中心</router-link
       >
+
       <div class="w-100 p-2 bg-gradient" @click="toogle_ShoppingCart">
         購物車
       </div>
@@ -294,15 +321,45 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
   }
 }
 
+.mainPageToolButton {
+  position: fixed;
+  right: 3%;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goTopButton {
+  width: 50px;
+  aspect-ratio: 1/1;
+  background-color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 6px black;
+  user-select: none;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 1rem;
+}
+
+.goTopButton.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 .shopping-cart {
   width: 80px;
   aspect-ratio: 1/1;
   border-radius: 50px;
   background-color: rgb(49, 49, 49);
   color: aliceblue;
-  position: fixed;
-  right: 3%;
-  bottom: 5%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -331,30 +388,6 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
 .shopping-cart-list.show {
   transform: scale(1);
 }
-
-/*.shoppingCartPorduct-btn {
-  user-select: none;
-  border-radius: 5px;
-  width: 20%;
-  cursor: pointer;
-}
-
-.shoppingCartList-btn {
-  user-select: none;
-  border: none;
-  transition: 0.5s;
-  font-weight: bold;
-}
-
-.shoppingCartList-btn:hover {
-  background-color: rgb(228, 228, 228);
-}
-
-.shopping-cart-cancel-btn {
-  width: 80%;
-  user-select: none;
-  cursor: pointer;
-}*/
 
 header {
   height: 10vh;
