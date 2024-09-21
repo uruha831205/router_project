@@ -213,6 +213,12 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_pic:
         "https://shopstore-image.shopstore.tw/7656/product/7656_643a9aea42e06.jpeg",
       p_new: "2024/9/10",
+      p_other_pics: [
+        "https://shopstore-image.shopstore.tw/7656/product/7656_643a9aea42e06.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aebc61be.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aed3a232.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aee8d5f4.jpeg",
+      ],
     },
     {
       p_id: "R005",
@@ -268,6 +274,12 @@ export const gun_shop = defineStore("gun_shop", () => {
       p_pic:
         "https://shopstore-image.shopstore.tw/7656/product/7656_643a9aea42e06.jpeg",
       p_new: "2024/9/01",
+      p_other_pics: [
+        "https://shopstore-image.shopstore.tw/7656/product/7656_643a9aea42e06.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aebc61be.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aed3a232.jpeg",
+        "https://storage.googleapis.com/shopstore-upload/7656/product/7656_643a9aee8d5f4.jpeg",
+      ],
     },
   ]);
 

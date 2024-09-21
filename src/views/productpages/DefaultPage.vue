@@ -5,6 +5,7 @@ import { computed, onMounted, ref, shallowRef } from "vue";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, Autoplay, Scrollbar } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -17,7 +18,7 @@ import { gun_shop } from "@/stores/usePinia.js";
 const get_route = useRoute();
 
 //onSlideChange 參考變數
-const activeSlide = ref(0);
+// const activeSlide = ref(0);
 
 //取得 pinia資料
 const gunshop = gun_shop();

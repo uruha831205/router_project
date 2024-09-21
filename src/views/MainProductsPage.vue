@@ -412,7 +412,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 500px) {
   .toggle-area {
     display: block;
   }
