@@ -14,7 +14,7 @@ const get_route = useRoute();
 // );
 </script>
 <template>
-  <div class="container-md d-flex p-0">
+  <div class="custom-layout container-md d-flex p-0">
     <div class="sidebar">
       <psidebar></psidebar>
     </div>
@@ -31,5 +31,17 @@ const get_route = useRoute();
 
 .section {
   width: 80%;
+}
+
+@media screen and (max-width: 780px) {
+  .custom-layout {
+    flex-direction: column;
+  }
+
+  .sidebar,
+  .section {
+    width: 100%;
+    padding-inline: 1rem;
+  }
 }
 </style>
