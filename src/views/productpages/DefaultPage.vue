@@ -150,7 +150,7 @@ const show_datas = computed(() => {
   border-bottom-left-radius: 0.5rem;
   padding: 0.2rem 0.4rem;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px 1px;
-  z-index: 2;
+  z-index: 1;
   background-color: rgba(184, 115, 51, 0.6);
   color: white;
 }

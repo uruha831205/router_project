@@ -40,7 +40,7 @@ function add_product_to_Cart(product) {
   gunshop.add_products(product);
   localStorage.setItem(
     "all_shopping_cart_products",
-    JSON.stringify(all_ShoppingCart_products.value)
+    JSON.stringify(product.value)
   );
 }
 </script>

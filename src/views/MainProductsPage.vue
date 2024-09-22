@@ -15,8 +15,12 @@ function clickToogle() {
   toogle.value = !toogle.value;
 }
 
-function toogle_ShoppingCart() {
+function toogleShoppingCart() {
   isOpen.value = !isOpen.value;
+}
+
+function toogleToFalse() {
+  isOpen.value = false;
 }
 
 function scrollToTop() {
@@ -40,7 +44,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="layout">
+  <div class="layout" @click="toogleToFalse">
     <header class="container-md">
       <router-link :to="`/${route_name}`" class="logo text-black"
         >Logo</router-link
@@ -98,6 +102,13 @@ onMounted(() => {
               搜尋
             </button>
           </div>
+          <div class="ms-2">
+            <i
+              class="bi bi-cart fs-3"
+              style="cursor: pointer"
+              @click.stop="toogleShoppingCart"
+            ></i>
+          </div>
         </div>
       </div>
       <div class="run-horse-bar bg-gradient">
@@ -122,7 +133,7 @@ onMounted(() => {
       </main>
     </footer>
 
-    <div class="mainPageToolButton">
+    <div class="mainPageToolButtons">
       <div
         class="goTopButton"
         :class="{ show: gotTopubttonisShow }"
@@ -131,18 +142,18 @@ onMounted(() => {
         <i class="bi bi-arrow-bar-up"></i>
       </div>
 
-      <div class="shopping-cart" @click="toogle_ShoppingCart">購物車</div>
+      <!-- <div class="shopping-cart" @click="toogleShoppingCart">購物車</div> -->
     </div>
 
-    <div class="shopping-cart-list" :class="[{ show: isOpen }]">
-      <ShoppingCartList></ShoppingCartList>
+    <div class="shopping-cart-list" :class="[{ show: isOpen }]" @click.stop>
+      <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
     </div>
 
     <div class="shoppingCart-mobile" :class="[{ show: isOpen }]">
       <div
         class="shoppingCart-mobile-overlay"
         :class="[{ show: isOpen }]"
-        @click="toogle_ShoppingCart"
+        @click="toogleShoppingCart"
       ></div>
       <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
     </div>
@@ -154,7 +165,7 @@ onMounted(() => {
         >會員中心</router-link
       >
 
-      <div class="w-100 p-2 bg-gradient" @click="toogle_ShoppingCart">
+      <div class="w-100 p-2 bg-gradient" @click="toogleShoppingCart">
         購物車
       </div>
     </div>
@@ -190,7 +201,7 @@ onMounted(() => {
   background-color: black;
   opacity: 0.6;
   z-index: 0;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .shoppingCart-mobile-overlay.show {
@@ -321,13 +332,14 @@ onMounted(() => {
   }
 }
 
-.mainPageToolButton {
+.mainPageToolButtons {
   position: fixed;
   right: 3%;
   bottom: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 3;
 }
 
 .goTopButton {
@@ -341,7 +353,6 @@ onMounted(() => {
   box-shadow: 0 0 6px black;
   user-select: none;
   cursor: pointer;
-  z-index: 10;
   border-radius: 50px;
   transition: 0.5s;
   visibility: hidden;
@@ -366,9 +377,9 @@ onMounted(() => {
   box-shadow: 0 0 6px black;
   user-select: none;
   cursor: pointer;
-  z-index: 10;
 }
 
+/*
 .shopping-cart-list {
   width: 550px;
   height: 300px;
@@ -387,6 +398,21 @@ onMounted(() => {
 
 .shopping-cart-list.show {
   transform: scale(1);
+}
+  */
+
+.shopping-cart-list {
+  position: fixed;
+  right: -100%;
+  color: black;
+  height: 100vh;
+  background-color: rgb(150, 150, 150);
+  transition: 0.5s;
+  z-index: 1040;
+}
+
+.shopping-cart-list.show {
+  right: 0;
 }
 
 header {
