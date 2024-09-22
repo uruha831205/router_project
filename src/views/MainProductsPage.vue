@@ -31,7 +31,7 @@ function scrollToTop() {
 }
 
 function handleScroll() {
-  gotTopubttonisShow.value = window.scrollY >= 800;
+  gotTopubttonisShow.value = window.scrollY >= 500;
 }
 
 if (!["airsoft", "real", "member"].includes(route_name)) {
@@ -45,18 +45,41 @@ onMounted(() => {
 
 <template>
   <div class="layout" @click="toogleToFalse">
-    <header class="container-md">
-      <router-link :to="`/${route_name}`" class="logo text-black"
-        >Logo</router-link
+    <header style="background-color: rgba(240, 240, 240, 1)">
+      <div
+        class="container-md py-1 d-flex align-items-center justify-content-between"
       >
+        <router-link :to="`/${route_name}`" class="logo text-black"
+          >Logo</router-link
+        >
+        <div class="search-area" style="width: 60%">
+          <input
+            type="text"
+            class="search-text p-3"
+            placeholder="HK416  戰術手套"
+          />
+          <button type="submit" class="search-btn px-2 bg-gradient">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <div class="d-flex">
+          <router-link
+            :to="`/${route_name}/member`"
+            class="fw-bloder fs-2 text-black me-4 member"
+            ><i class="bi bi-person-circle"></i
+          ></router-link>
 
-      <router-link :to="`/${route_name}/member`" class="member text-black"
-        >會員中心</router-link
-      >
+          <i
+            class="bi bi-bag fs-2 fw-bloder member"
+            style="cursor: pointer"
+            @click.stop="toogleShoppingCart"
+          ></i>
+        </div>
+      </div>
     </header>
 
     <nav class="bg-gradient sticky-top">
-      <div class="container-md navbar h-100 w-100 custom-navbar">
+      <div class="container-md h-100 w-100 custom-navbar my-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
@@ -99,15 +122,8 @@ onMounted(() => {
               placeholder="HK416  戰術手套"
             />
             <button type="submit" class="search-btn px-2 bg-gradient">
-              搜尋
+              <i class="bi bi-search"></i>
             </button>
-          </div>
-          <div class="ms-2">
-            <i
-              class="bi bi-cart fs-3"
-              style="cursor: pointer"
-              @click.stop="toogleShoppingCart"
-            ></i>
           </div>
         </div>
       </div>
@@ -155,7 +171,7 @@ onMounted(() => {
         :class="[{ show: isOpen }]"
         @click="toogleShoppingCart"
       ></div>
-      <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
+      <ShoppingCartList :setBackColorGray="true" @click.stop></ShoppingCartList>
     </div>
 
     <div class="member_shoppingCart_btn-mobile text-center fw-bold fs-5">
@@ -165,7 +181,7 @@ onMounted(() => {
         >會員中心</router-link
       >
 
-      <div class="w-100 p-2 bg-gradient" @click="toogleShoppingCart">
+      <div class="w-100 p-2 bg-gradient" @click.stop="toogleShoppingCart">
         購物車
       </div>
     </div>
@@ -224,7 +240,6 @@ onMounted(() => {
 }
 
 .member {
-  font-size: 2.5rem;
   text-decoration: none;
   font-weight: bold;
 }
@@ -237,12 +252,18 @@ onMounted(() => {
   width: 25%;
 }
 
+:is(nav) .search-area {
+  display: none;
+}
+
 .search-area {
   display: flex;
   position: relative;
-  border-radius: 5px;
-  border: 1px solid black;
+  border-radius: 50px;
   overflow: hidden;
+  margin: 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px 1px,
+    rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
 }
 
 .search-text {
@@ -253,17 +274,15 @@ onMounted(() => {
   transition: 0.2s;
 }
 
-.search-text:focus {
-  box-shadow: inset 0 0 3px black;
-}
-
 .search-btn {
   height: 100%;
   inset: unset;
   position: absolute;
   right: 0;
   border: none;
-  border-left: 2px solid black;
+  width: 15%;
+  border-radius: 50px;
+  background-color: white;
 }
 
 .choose {
@@ -416,11 +435,7 @@ onMounted(() => {
 }
 
 header {
-  height: 10vh;
   background-color: rgb(255, 255, 255);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 nav {
@@ -442,8 +457,7 @@ footer {
   .link-bar {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
+    justify-content: space-around;
   }
 
   .search-bar {
@@ -460,18 +474,25 @@ footer {
     display: block;
   }
 
-  .member,
   .shopping-cart,
   .shopping-cart-list {
     display: none;
   }
 
   .member_shoppingCart_btn-mobile {
-    display: flex;
+    display: none;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
+  :is(nav) .search-area {
+    display: block;
+  }
+
+  :is(header) .search-area {
+    display: none;
+  }
+
   .toggle-area {
     display: block;
   }
