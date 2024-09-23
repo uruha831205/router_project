@@ -1,7 +1,5 @@
 /* @import './base.css'; */
 
-*{
-  -webkit-appearance: none; /* Chrome 和 Safari */
-  -moz-appearance: none;    /* Firefox */
-  appearance: none;         /* 標準屬性 */
+input{
+  background-color: white;
 }
