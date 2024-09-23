@@ -68,7 +68,7 @@ app.use(router);
 app.use(pinia);
 app.use(PrimeVue, {
   theme: {
-    preset: Noir,
+    preset: Aura,
     options: {
       prefix: "p",
       darkModeSelector: "system",
