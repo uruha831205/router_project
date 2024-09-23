@@ -45,7 +45,7 @@ onMounted(() => {
 
 <template>
   <div class="layout" @click="toogleToFalse">
-    <header style="background-color: rgba(240, 240, 240, 1)">
+    <header style="background-color: rgba(240, 240, 240, 1)" class="m-0 p-0">
       <div
         class="container-md py-1 d-flex align-items-center justify-content-between"
       >
