@@ -188,7 +188,8 @@ onMounted(() => {
 
 <style scoped>
 @media (prefers-color-scheme: dark) {
-  div {
+  div,
+  button {
     background-color: #333;
   }
   * {
@@ -197,6 +198,9 @@ onMounted(() => {
 }
 
 @media (prefers-color-scheme: light) {
+  button {
+    background-color: white;
+  }
   * {
     color: #000;
   }
