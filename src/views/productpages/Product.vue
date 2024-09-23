@@ -47,7 +47,7 @@ function add_product_to_Cart(product) {
 
 <template>
   <div class="container-md my-2">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-12 col-lg-7 p-0 m-0">
         <swiper
           :modules="[Thumbs]"
@@ -149,7 +149,9 @@ function add_product_to_Cart(product) {
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="row">
       <div class="col-12">
         <Tabs value="0">
           <TabList>
@@ -162,7 +164,7 @@ function add_product_to_Cart(product) {
               <div class="d-flex flex-column align-items-center">
                 <img
                   v-for="pic in select_data.p_other_pics"
-                  class="mb-2"
+                  class="mb-3"
                   :src="pic"
                   alt="pic"
                   width="70%"

@@ -44,8 +44,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="layout" @click="toogleToFalse">
-    <header style="background-color: rgba(240, 240, 240, 1)" class="m-0 p-0">
+  <div @click="toogleToFalse">
+    <header class="m-0 p-0">
       <div
         class="container-md py-1 d-flex align-items-center justify-content-between"
       >
@@ -59,7 +59,7 @@ onMounted(() => {
             placeholder="HK416  戰術手套"
           />
           <button type="submit" class="search-btn px-2 bg-gradient">
-            <i class="bi bi-search fs-4"></i>123
+            <i class="bi bi-search fs-4"></i>
           </button>
         </div>
         <div class="d-flex">
@@ -77,34 +77,35 @@ onMounted(() => {
       </div>
     </header>
 
-    <nav class="bg-gradient sticky-top">
+    <nav class="sticky-top">
+      <!-- bg-gradient -->
       <div class="container-md h-100 w-100 custom-navbar py-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
             @click="clickToogle"
-            class="choose text-black fw-bold fs-3"
+            class="choose fw-bold fs-3"
             replace
             >長槍短槍</router-link
           >
           <router-link
             :to="`/${route_name}/part`"
             @click="clickToogle"
-            class="choose text-black fw-bold fs-3"
+            class="choose fw-bold fs-3"
             replace
             >內部零件</router-link
           >
           <router-link
             :to="`/${route_name}/component`"
             @click="clickToogle"
-            class="choose text-black fw-bold fs-3"
+            class="choose fw-bold fs-3"
             replace
             >外部配件</router-link
           >
           <router-link
             :to="`/${route_name}/equipment`"
             @click="clickToogle"
-            class="choose text-black fw-bold fs-3"
+            class="choose fw-bold fs-3"
             replace
             >人身裝備</router-link
           >
@@ -189,18 +190,40 @@ onMounted(() => {
 <style scoped>
 @media (prefers-color-scheme: dark) {
   div,
-  button {
+  button,
+  header,
+  :is(header) div {
+    background-color: #444;
+  }
+
+  nav,
+  :is(nav) div,
+  footer {
     background-color: #333;
   }
+
   * {
     color: #fff;
   }
 }
 
 @media (prefers-color-scheme: light) {
+  header {
+    background-color: rgb(255, 255, 255);
+  }
+
+  nav {
+    background-color: rgb(170, 170, 170); /*rgb(170, 170, 170)*/
+  }
+
   button {
     background-color: white;
   }
+
+  footer {
+    background-color: rgb(170, 170, 170);
+  }
+
   * {
     color: #000;
   }
@@ -342,6 +365,7 @@ onMounted(() => {
 }
 
 .run-horse-words {
+  color: white;
   position: absolute;
   animation: slide linear 25s infinite;
 }
@@ -439,10 +463,10 @@ onMounted(() => {
 
 .shopping-cart-list {
   position: fixed;
+  top: 0%;
   right: -100%;
   color: black;
   height: 100vh;
-  background-color: rgb(150, 150, 150);
   transition: 0.5s;
   z-index: 1040;
 }
@@ -451,17 +475,8 @@ onMounted(() => {
   right: 0;
 }
 
-header {
-  background-color: rgb(255, 255, 255);
-}
-
-nav {
-  background-color: rgb(170, 170, 170); /*rgb(170, 170, 170)*/
-}
-
 footer {
   padding: 5rem;
-  background-color: rgb(170, 170, 170);
 }
 
 @media screen and (max-width: 1000px) {

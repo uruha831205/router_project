@@ -56,7 +56,7 @@ watchEffect(() => {
             class="product-pic"
           >
             <img
-              class="pic w-100"
+              class="pic w-100 p-1"
               style="height: 250px; object-fit: contain"
               :src="item.p_pic"
               alt="pic"
@@ -88,10 +88,16 @@ watchEffect(() => {
 </template>
 
 <style scoped>
+@media (prefers-color-scheme: dark) {
+  .product-banner {
+    background-color: #333;
+  }
+}
+
 .product-banner {
   width: 100%;
   height: 100%;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px 1px,
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 6px 1px,
     rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
   border-radius: 6px;
   padding: 5px;

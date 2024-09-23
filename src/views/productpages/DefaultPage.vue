@@ -76,7 +76,7 @@ const show_datas = computed(() => {
           :src="product"
           style="object-fit: cover; cursor: pointer"
           class="w-100"
-          alt="Product image"
+          alt="Product-image"
         />
       </swiper-slide>
       <div class="custom-prev">
@@ -87,7 +87,7 @@ const show_datas = computed(() => {
       </div>
     </swiper>
 
-    <div class="new-products my-5">
+    <div class="new-products my-3">
       <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-xs-1">
         <div v-for="data in show_datas" class="new-product-banner">
           <div class="product w-100 h-100">
@@ -115,6 +115,12 @@ const show_datas = computed(() => {
 </template>
 
 <style scoped>
+@media (prefers-color-scheme: dark) {
+  .product {
+    background-color: #333;
+  }
+}
+
 .new-product-banner {
   padding: 10px;
 }
@@ -126,8 +132,12 @@ const show_datas = computed(() => {
 }
 
 .product {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 6px 1px,
+    rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
+  /*
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px 1px,
     rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
+  */
   padding: 1rem;
   border-radius: 0.5rem;
   position: relative;
@@ -151,7 +161,7 @@ const show_datas = computed(() => {
   padding: 0.2rem 0.4rem;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px 1px;
   z-index: 1;
-  background-color: rgba(184, 115, 51, 0.6);
+  background-color: rgb(219, 152, 89); /*184, 115, 51*/
   color: white;
 }
 

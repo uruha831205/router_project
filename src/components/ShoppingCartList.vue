@@ -89,14 +89,14 @@ onMounted(() => {
             </div>
             <div class="col-8 col-sm-7 d-flex justify-content-around">
               <button
-                class="bg-white fw-bold shoppingCartPorduct-btn"
+                class="fw-bold shoppingCartPorduct-btn"
                 @click="reduce_quantuty(product)"
               >
                 -
               </button>
               <span class="fw-bold">{{ product.quantity }}</span>
               <button
-                class="bg-white fw-bold shoppingCartPorduct-btn"
+                class="fw-bold shoppingCartPorduct-btn"
                 @click="add_quantuty(product)"
                 :disabled="product.quantity === 10"
               >
