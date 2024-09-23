@@ -6,12 +6,3 @@
     box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-    div {
-      background-color: #333;
-      
-    }
-    *{
-        color: #fff;
-    }
-  }

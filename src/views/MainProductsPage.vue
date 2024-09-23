@@ -78,7 +78,7 @@ onMounted(() => {
     </header>
 
     <nav class="bg-gradient sticky-top">
-      <div class="container-md h-100 w-100 custom-navbar my-2">
+      <div class="container-md h-100 w-100 custom-navbar py-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="`/${route_name}/gun`"
@@ -137,14 +137,14 @@ onMounted(() => {
 
     <footer class="d-flex justify-content-center">
       <main class="container-xl row row-cols-lg-3 row-cols-xs-1">
-        <div class="mb-5" v-for="x in 3">
+        <section class="mb-5" v-for="x in 3">
           門市營業時間
           <hr class="mt-1 mb-2" />
           周二 ~ 周日 : AM. 11:00 ~ PM.9:00 <br />
           周一公休<br />
           線上客服<br />
           周一 ~ 週日 : AM. 12:00 ~ PM.9:00
-        </div>
+        </section>
       </main>
     </footer>
 
@@ -188,6 +188,15 @@ onMounted(() => {
 </template>
 
 <style scoped>
+@media (prefers-color-scheme: dark) {
+  div {
+    background-color: #333;
+  }
+  * {
+    color: #fff;
+  }
+}
+
 .layout {
   position: relative;
 }
