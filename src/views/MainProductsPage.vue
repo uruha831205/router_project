@@ -188,8 +188,7 @@ onMounted(() => {
 
 <style scoped>
 @media (prefers-color-scheme: dark) {
-  div,
-  button {
+  div {
     background-color: #333;
   }
   * {
@@ -290,7 +289,6 @@ onMounted(() => {
   border: none;
   width: 15%;
   border-radius: 50px;
-  background-color: white;
 }
 
 .choose {
