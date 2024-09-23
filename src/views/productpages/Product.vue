@@ -68,7 +68,7 @@ function add_product_to_Cart(product) {
         </swiper>
 
         <swiper
-          class="mt-2"
+          class="mt-2 px-3"
           @swiper="setThumbsSwiper"
           :slides-per-view="5"
           :space-between="10"
@@ -90,7 +90,7 @@ function add_product_to_Cart(product) {
       </div>
 
       <div class="col-12 col-lg-4 offset-lg-1 py-4">
-        <h5 class="mb-2 fw-bold" style="color: rgba(90, 90, 90)">
+        <h5 class="mb-2 fw-bold" style="color: rgba(150, 150, 150)">
           {{ select_data.p_son_kind }} {{ select_data.p_brand }}
         </h5>
         <h1 class="fw-bold mb-4">{{ select_data.p_name }}</h1>
