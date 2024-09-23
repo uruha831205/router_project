@@ -59,7 +59,7 @@ onMounted(() => {
             placeholder="HK416  戰術手套"
           />
           <button type="submit" class="search-btn px-2 bg-gradient">
-            <i class="bi bi-search"></i>
+            <i class="bi bi-search fs-4"></i>
           </button>
         </div>
         <div class="d-flex">
@@ -68,9 +68,8 @@ onMounted(() => {
             class="fw-bloder fs-2 text-black me-4 member"
             ><i class="bi bi-person-circle"></i
           ></router-link>
-
           <i
-            class="bi bi-bag fs-2 fw-bloder member"
+            class="bi bi-bag fs-2 member"
             style="cursor: pointer"
             @click.stop="toogleShoppingCart"
           ></i>
@@ -122,7 +121,7 @@ onMounted(() => {
               placeholder="HK416  戰術手套"
             />
             <button type="submit" class="search-btn px-2 bg-gradient">
-              <i class="bi bi-search"></i>
+              <i class="bi bi-search fs-4"></i>
             </button>
           </div>
         </div>
