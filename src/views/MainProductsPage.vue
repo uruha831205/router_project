@@ -50,7 +50,7 @@ onMounted(() => {
         class="container-md py-1 d-flex align-items-center justify-content-between"
       >
         <router-link :to="`/${route_name}`" class="logo text-black"
-          >Logo</router-link
+          ><div>Logo</div></router-link
         >
         <div class="search-area" style="width: 60%">
           <input
@@ -59,7 +59,7 @@ onMounted(() => {
             placeholder="HK416  戰術手套"
           />
           <button type="submit" class="search-btn px-2 bg-gradient">
-            <i class="bi bi-search fs-4"></i>
+            <i class="bi bi-search fs-4"></i>123
           </button>
         </div>
         <div class="d-flex">
@@ -154,7 +154,7 @@ onMounted(() => {
         :class="{ show: gotTopubttonisShow }"
         @click="scrollToTop"
       >
-        <i class="bi bi-arrow-bar-up"></i>
+        <i class="bi bi-arrow-bar-up text-dark"></i>
       </div>
       <!-- <div class="shopping-cart" @click="toogleShoppingCart">購物車</div> -->
     </section>
@@ -193,6 +193,12 @@ onMounted(() => {
   }
   * {
     color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  * {
+    color: #000;
   }
 }
 
