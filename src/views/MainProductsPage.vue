@@ -127,7 +127,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="run-horse-bar bg-gradient">
-        <div class="run-horse-words">新品即將進貨!!</div>
+        <section class="run-horse-words">新品即將進貨!!</section>
       </div>
     </nav>
 
@@ -148,7 +148,7 @@ onMounted(() => {
       </main>
     </footer>
 
-    <div class="mainPageToolButtons">
+    <section class="mainPageToolButtons">
       <div
         class="goTopButton"
         :class="{ show: gotTopubttonisShow }"
@@ -156,9 +156,8 @@ onMounted(() => {
       >
         <i class="bi bi-arrow-bar-up"></i>
       </div>
-
       <!-- <div class="shopping-cart" @click="toogleShoppingCart">購物車</div> -->
-    </div>
+    </section>
 
     <div class="shopping-cart-list" :class="[{ show: isOpen }]" @click.stop>
       <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
@@ -189,7 +188,8 @@ onMounted(() => {
 
 <style scoped>
 @media (prefers-color-scheme: dark) {
-  div {
+  div,
+  button {
     background-color: #333;
   }
   * {
@@ -373,6 +373,7 @@ onMounted(() => {
   width: 50px;
   aspect-ratio: 1/1;
   background-color: white;
+  color: black;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
