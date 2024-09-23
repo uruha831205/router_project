@@ -1,1 +1,8 @@
 /* @import './base.css'; */
+
+@media (prefers-color-scheme: dark) {
+    * {
+      background-color: #333;
+      color: #fff;
+    }
+  }
