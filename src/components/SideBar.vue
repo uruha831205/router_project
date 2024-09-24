@@ -6,7 +6,7 @@ const gunshop = gun_shop();
 const { guns, parts, components, equipments } = storeToRefs(gunshop);
 
 const show_products = reactive([guns, parts, components, equipments]);
-const dropdownState = ref([true, true, true, true]);
+const dropdownState = ref([false, false, false, false]);
 const select_bar_name = ["長槍短槍", "內部零件", "外部配件", "人身裝備"];
 
 const toggleDropdown = (dropdownKey) => {

@@ -52,7 +52,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div @click="toogleToFalse">
+  <div
+    @click="toogleToFalse"
+    style="display: flex; flex-direction: column; height: 100vh"
+  >
     <header class="m-0 p-0">
       <div
         class="container-md py-1 d-flex align-items-center justify-content-between"
@@ -92,7 +95,7 @@ onMounted(() => {
 
     <nav class="sticky-top">
       <!-- bg-gradient -->
-      <div class="container-md h-100 w-100 custom-navbar py-2">
+      <div class="container-md custom-navbar py-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
             :to="{
@@ -145,8 +148,13 @@ onMounted(() => {
               type="text"
               class="search-text p-2"
               placeholder="HK416  戰術手套"
+              v-model="searchContent"
             />
-            <button type="submit" class="search-btn px-2 bg-gradient">
+            <button
+              type="submit"
+              class="search-btn px-2 bg-gradient"
+              @click="startSearch"
+            >
               <i class="bi bi-search fs-4"></i>
             </button>
           </div>
@@ -157,7 +165,7 @@ onMounted(() => {
       </div>
     </nav>
 
-    <div class="router-view-area">
+    <div class="router-view-area" style="flex: 1">
       <router-view></router-view>
     </div>
 

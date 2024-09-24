@@ -117,4 +117,11 @@ onMounted(() => {
   border-radius: 6px;
   padding: 5px;
 }
+
+.product-info {
+  height: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 </style>
