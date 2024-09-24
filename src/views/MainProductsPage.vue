@@ -69,6 +69,7 @@ onMounted(() => {
             class="search-text p-3"
             placeholder="HK416  戰術手套"
             v-model="searchContent"
+            @keyup.enter="startSearch"
           />
           <button
             type="submit"

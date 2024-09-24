@@ -30,7 +30,7 @@ function search() {
 function serachByName(name) {
   search();
   show_items.value = choose_items.value.filter((products) =>
-    products.p_name.includes(name)
+    products.p_name.toLowerCase().includes(name.toLowerCase())
   );
 }
 
