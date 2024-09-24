@@ -41,7 +41,7 @@ const toggleDropdown = (dropdownKey) => {
     <hr />
   </div>
 
-  <button class="search-btn">搜尋</button>
+  <button class="search-btn py-1">搜尋</button>
 </template>
 
 <style scoped>
@@ -92,10 +92,9 @@ hr {
 
 .search-btn {
   width: 100%;
-  right: 0;
   border: none;
   border-radius: 20px;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   background-color: rgb(85, 85, 85);
   font-size: 1.2rem;
   font-weight: bold;

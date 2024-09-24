@@ -53,8 +53,7 @@ onMounted(() => {
 
 <template>
   <div
-    @click="toogleToFalse"
-    style="display: flex; flex-direction: column; height: 100vh"
+    style="display: flex; flex-direction: column; height: 100vh; overflow: auto"
   >
     <header class="m-0 p-0">
       <div
@@ -66,7 +65,7 @@ onMounted(() => {
         <div class="search-area" style="width: 60%">
           <input
             type="text"
-            class="search-text p-3"
+            class="search-text px-5 py-3"
             placeholder="HK416  戰術手套"
             v-model="searchContent"
             @keyup.enter="startSearch"
@@ -198,13 +197,19 @@ onMounted(() => {
       <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
     </div>
 
-    <div class="shoppingCart-mobile" :class="[{ show: isOpen }]">
+    <div>
+      <!-- PC & Mobile 皆會用 -->
       <div
         class="shoppingCart-mobile-overlay"
         :class="[{ show: isOpen }]"
-        @click="toogleShoppingCart"
+        @click.stop="toogleShoppingCart"
       ></div>
-      <ShoppingCartList :setBackColorGray="true" @click.stop></ShoppingCartList>
+      <div class="shoppingCart-mobile h-100" :class="[{ show: isOpen }]">
+        <ShoppingCartList
+          :setBackColorGray="true"
+          @click.stop
+        ></ShoppingCartList>
+      </div>
     </div>
 
     <div class="member_shoppingCart_btn-mobile text-center fw-bold fs-5">
@@ -271,11 +276,11 @@ onMounted(() => {
   display: none;
   position: fixed;
   top: 0;
+  left: -100%;
   width: 80%;
   height: 100%;
   transition: 0.3s;
-  left: -100%;
-  z-index: 1040;
+  z-index: 1041;
 }
 
 .shoppingCart-mobile.show {
@@ -283,19 +288,20 @@ onMounted(() => {
 }
 
 .shoppingCart-mobile-overlay {
+  visibility: hidden;
   position: fixed;
   top: 0;
-  right: -100%;
   width: 100vw;
   height: 100vh;
   background-color: black;
-  opacity: 0.6;
-  z-index: 0;
+  opacity: 0;
+  z-index: 1040;
   transition: 0.3s;
 }
 
 .shoppingCart-mobile-overlay.show {
-  right: 0%;
+  visibility: visible;
+  opacity: 0.5;
 }
 
 .member_shoppingCart_btn-mobile {
@@ -473,36 +479,14 @@ onMounted(() => {
   cursor: pointer;
 }
 
-/*
-.shopping-cart-list {
-  width: 550px;
-  height: 300px;
-  position: fixed;
-  right: 3%;
-  bottom: 15%;
-  background-color: rgb(150, 150, 150);
-  border-radius: 10px;
-  transform: scale(0);
-  transform-origin: bottom right;
-  transition: 0.5s;
-  color: black;
-  overflow: hidden;
-  z-index: 10;
-}
-
-.shopping-cart-list.show {
-  transform: scale(1);
-}
-  */
-
 .shopping-cart-list {
   position: fixed;
   top: 0%;
   right: -100%;
   color: black;
   height: 100vh;
-  transition: 0.5s;
-  z-index: 1040;
+  transition: 0.4s;
+  z-index: 1041;
 }
 
 .shopping-cart-list.show {
