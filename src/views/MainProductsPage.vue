@@ -1,7 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { onMounted, ref, triggerRef } from "vue";
-
+import { onMounted, ref, triggerRef, provide } from "vue";
 import ShoppingCartList from "@/components/ShoppingCartList.vue";
 
 const get_route = useRoute();
@@ -10,6 +9,7 @@ const route_name = get_route.params.message;
 const toogle = ref(false);
 const isOpen = ref(false);
 const gotTopubttonisShow = ref(false);
+const searchContent = ref("");
 
 function clickToogle() {
   toogle.value = !toogle.value;
@@ -27,6 +27,14 @@ function scrollToTop() {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
+  });
+}
+
+function startSearch() {
+  //searchContent
+  get_router.push({
+    name: "search_product",
+    query: { searchContent: searchContent.value, t: Date.now() },
   });
 }
 
@@ -57,8 +65,13 @@ onMounted(() => {
             type="text"
             class="search-text p-3"
             placeholder="HK416  戰術手套"
+            v-model="searchContent"
           />
-          <button type="submit" class="search-btn px-2 bg-gradient">
+          <button
+            type="submit"
+            class="search-btn px-2 bg-gradient"
+            @click="startSearch"
+          >
             <i class="bi bi-search fs-4"></i>
           </button>
         </div>
@@ -82,28 +95,40 @@ onMounted(() => {
       <div class="container-md h-100 w-100 custom-navbar py-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
-            :to="`/${route_name}/gun`"
+            :to="{
+              name: 'search_product',
+              query: { searchGroup: 'gun', t: Date.now() },
+            }"
             @click="clickToogle"
             class="choose fw-bold fs-3"
             replace
             >長槍短槍</router-link
           >
           <router-link
-            :to="`/${route_name}/part`"
+            :to="{
+              name: 'search_product',
+              query: { searchGroup: 'part', t: Date.now() },
+            }"
             @click="clickToogle"
             class="choose fw-bold fs-3"
             replace
             >內部零件</router-link
           >
           <router-link
-            :to="`/${route_name}/component`"
+            :to="{
+              name: 'search_product',
+              query: { searchGroup: 'component', t: Date.now() },
+            }"
             @click="clickToogle"
             class="choose fw-bold fs-3"
             replace
             >外部配件</router-link
           >
           <router-link
-            :to="`/${route_name}/equipment`"
+            :to="{
+              name: 'search_product',
+              query: { searchGroup: 'equipment', t: Date.now() },
+            }"
             @click="clickToogle"
             class="choose fw-bold fs-3"
             replace

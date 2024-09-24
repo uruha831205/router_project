@@ -67,6 +67,11 @@ const router = createRouter({
             }
           },
         },
+        {
+          path: "/:message/product",
+          name: "search_product",
+          component: () => import("../views/productpages/ShowProductPage.vue"),
+        },
       ],
     },
     {

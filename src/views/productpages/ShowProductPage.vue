@@ -1,18 +1,11 @@
 <script setup>
+import { ref, watch, computed, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import psidebar from "@/components/SideBar.vue";
 import pcontent from "@/components/Content.vue";
-const get_route = useRoute();
-
-// const route_item = ref(get_route.params);
-
-// watch(
-//   () => get_route.params,
-//   (newParams) => {
-//     route_item.value = newParams;
-//   }
-// );
+//const get_route = useRoute();
 </script>
+
 <template>
   <div class="custom-layout container-md d-flex p-0">
     <div class="sidebar">

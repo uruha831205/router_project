@@ -1,14 +1,16 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
-import { ref, shallowRef, watch, watchEffect } from "vue";
+import { onMounted, ref, shallowRef, watch, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
-const show_items = shallowRef();
 const gunshop = gun_shop();
 const { airsoft_datas, real_datas, all_ShoppingCart_products } =
   storeToRefs(gunshop);
+
+const choose_items = shallowRef();
+const show_items = shallowRef();
 
 function add_product_to_Cart(product) {
   gunshop.add_products(product);
@@ -18,32 +20,45 @@ function add_product_to_Cart(product) {
   );
 }
 
-watchEffect(() => {
-  show_items.value =
+function search() {
+  choose_items.value =
     get_route.params.message == "airsoft"
       ? airsoft_datas.value
       : real_datas.value;
-  show_items.value = show_items.value.filter(
-    (products) => products.p_kind === get_route.params.kind
+}
+
+function serachByName(name) {
+  search();
+  show_items.value = choose_items.value.filter((products) =>
+    products.p_name.includes(name)
   );
+}
+
+function serachByKind(kind) {
+  search();
+  show_items.value = choose_items.value.filter(
+    (products) => products.p_kind === kind
+  );
+}
+
+function checkToSearch() {
+  if ("searchContent" in get_route.query) {
+    serachByName(get_route.query.searchContent);
+  } else if ("searchGroup" in get_route.query) {
+    serachByKind(get_route.query.searchGroup);
+  }
+}
+
+watch(
+  () => get_route.query.t,
+  () => {
+    checkToSearch();
+  }
+);
+
+onMounted(() => {
+  checkToSearch();
 });
-
-// watch(get_route.params.message, (a, b) => {
-//   console.log("!", a);
-//   console.log("!", b);
-//   show_items.value =
-//     get_route.params.message == "airsoft"
-//       ? airsoft_datas.value
-//       : real_datas.value;
-// });
-
-// watch(get_route.params.kind, (a, b) => {
-//   console.log(a);
-//   console.log(b);
-//   show_items.value = show_items.value.filter(
-//     (products) => products.p_kind === get_route.params.kind
-//   );
-// });
 </script>
 
 <template>
