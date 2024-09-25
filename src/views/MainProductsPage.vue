@@ -52,9 +52,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    style="display: flex; flex-direction: column; height: 100vh; overflow: auto"
-  >
+  <!-- style="display: flex; flex-direction: column; height: 100vh; overflow: auto" -->
+  <div>
     <header class="m-0 p-0">
       <div
         class="container-md py-1 d-flex align-items-center justify-content-between"
@@ -65,7 +64,8 @@ onMounted(() => {
         <div class="search-area" style="width: 60%">
           <input
             type="text"
-            class="search-text px-5 py-3"
+            class="search-text px-5"
+            style="padding: 0.8rem"
             placeholder="HK416  戰術手套"
             v-model="searchContent"
             @keyup.enter="startSearch"
@@ -103,7 +103,7 @@ onMounted(() => {
               query: { searchGroup: 'gun', t: Date.now() },
             }"
             @click="clickToogle"
-            class="choose fw-bold fs-3"
+            class="choose fw-bold fs-4"
             replace
             >長槍短槍</router-link
           >
@@ -113,7 +113,7 @@ onMounted(() => {
               query: { searchGroup: 'part', t: Date.now() },
             }"
             @click="clickToogle"
-            class="choose fw-bold fs-3"
+            class="choose fw-bold fs-4"
             replace
             >內部零件</router-link
           >
@@ -123,7 +123,7 @@ onMounted(() => {
               query: { searchGroup: 'component', t: Date.now() },
             }"
             @click="clickToogle"
-            class="choose fw-bold fs-3"
+            class="choose fw-bold fs-4"
             replace
             >外部配件</router-link
           >
@@ -133,7 +133,7 @@ onMounted(() => {
               query: { searchGroup: 'equipment', t: Date.now() },
             }"
             @click="clickToogle"
-            class="choose fw-bold fs-3"
+            class="choose fw-bold fs-4"
             replace
             >人身裝備</router-link
           >
@@ -165,7 +165,8 @@ onMounted(() => {
       </div>
     </nav>
 
-    <div class="router-view-area" style="flex: 1">
+    <!-- style="flex: 1" -->
+    <div class="router-view-area">
       <router-view></router-view>
     </div>
 
@@ -248,7 +249,7 @@ onMounted(() => {
 
 @media (prefers-color-scheme: light) {
   header {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(240, 240, 240);
   }
 
   nav {
@@ -368,7 +369,7 @@ onMounted(() => {
   position: relative;
   text-decoration: none;
   font-style: unset;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
 }
 
 .choose:nth-last-child(1) {
@@ -494,7 +495,7 @@ onMounted(() => {
 }
 
 footer {
-  padding: 5rem;
+  padding: 5.4rem;
 }
 
 @media screen and (max-width: 1000px) {
