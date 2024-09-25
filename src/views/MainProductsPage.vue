@@ -180,10 +180,10 @@ onMounted(() => {
 
     <section class="mainPageToolButtons" :class="{ show: gotTopubttonisShow }">
       <div class="toolButton goTopButton" @click="scrollToTop">
-        <i class="bi bi-arrow-bar-up"></i>
+        <i class="bi bi-arrow-bar-up text-black"></i>
       </div>
       <div class="toolButton goTopButton" @click="toogleShoppingCart">
-        <i class="bi bi-bag"></i>
+        <i class="bi bi-bag text-black"></i>
       </div>
     </section>
 
