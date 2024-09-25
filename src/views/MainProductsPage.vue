@@ -183,7 +183,7 @@ onMounted(() => {
         <i class="bi bi-arrow-bar-up"></i>
       </div>
       <div class="toolButton goTopButton" @click="toogleShoppingCart">
-        <i class="bi bi-bag fs-2"></i>
+        <i class="bi bi-bag"></i>
       </div>
     </section>
 
