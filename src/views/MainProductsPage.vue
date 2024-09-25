@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { onMounted, ref, triggerRef, provide } from "vue";
+import { onMounted, ref } from "vue";
 import ShoppingCartList from "@/components/ShoppingCartList.vue";
 
 const get_route = useRoute();
@@ -17,10 +17,6 @@ function clickToogle() {
 
 function toogleShoppingCart() {
   isOpen.value = !isOpen.value;
-}
-
-function toogleToFalse() {
-  isOpen.value = false;
 }
 
 function scrollToTop() {
@@ -52,8 +48,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- style="display: flex; flex-direction: column; height: 100vh; overflow: auto" -->
-  <div>
+  <!-- style="display: flex; flex-direction: column; min-height: 100vh; overflow: auto" -->
+  <div style="display: flex; flex-direction: column; min-height: 100vh">
     <header class="m-0 p-0">
       <div
         class="container-md py-1 d-flex align-items-center justify-content-between"
@@ -94,7 +90,6 @@ onMounted(() => {
     </header>
 
     <nav class="sticky-top">
-      <!-- bg-gradient -->
       <div class="container-md custom-navbar py-2">
         <div class="link-bar" :class="{ show: toogle }">
           <router-link
@@ -166,7 +161,7 @@ onMounted(() => {
     </nav>
 
     <!-- style="flex: 1" -->
-    <div class="router-view-area">
+    <div class="router-view-area" style="flex: 1">
       <router-view></router-view>
     </div>
 
@@ -183,18 +178,16 @@ onMounted(() => {
       </main>
     </footer>
 
-    <section class="mainPageToolButtons">
-      <div
-        class="goTopButton"
-        :class="{ show: gotTopubttonisShow }"
-        @click="scrollToTop"
-      >
-        <i class="bi bi-arrow-bar-up text-dark"></i>
+    <section class="mainPageToolButtons" :class="{ show: gotTopubttonisShow }">
+      <div class="toolButton goTopButton" @click="scrollToTop">
+        <i class="bi bi-arrow-bar-up"></i>
       </div>
-      <!-- <div class="shopping-cart" @click="toogleShoppingCart">購物車</div> -->
+      <div class="toolButton goTopButton" @click="toogleShoppingCart">
+        <i class="bi bi-bag fs-2"></i>
+      </div>
     </section>
 
-    <div class="shopping-cart-list" :class="[{ show: isOpen }]" @click.stop>
+    <div class="shopping-cart-list" :class="[{ show: isOpen }]">
       <ShoppingCartList :setBackColorGray="true"></ShoppingCartList>
     </div>
 
@@ -440,37 +433,22 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   z-index: 3;
-}
-
-.goTopButton {
-  width: 50px;
-  aspect-ratio: 1/1;
-  background-color: white;
-  color: black;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 6px black;
-  user-select: none;
-  cursor: pointer;
-  border-radius: 50px;
-  transition: 0.5s;
-  visibility: hidden;
   opacity: 0;
-  margin-bottom: 1rem;
+  visibility: hidden;
+  transition: 0.3s;
 }
 
-.goTopButton.show {
+.mainPageToolButtons.show {
   visibility: visible;
   opacity: 1;
 }
 
-.shopping-cart {
-  width: 80px;
+.toolButton {
+  width: 50px;
   aspect-ratio: 1/1;
+  font-size: 1.5rem;
   border-radius: 50px;
-  background-color: rgb(49, 49, 49);
+  background-color: white;
   color: aliceblue;
   display: flex;
   align-items: center;
@@ -480,7 +458,12 @@ onMounted(() => {
   cursor: pointer;
 }
 
+.toolButton:not(:nth-last-child(1)) {
+  margin-bottom: 1rem;
+}
+
 .shopping-cart-list {
+  width: clamp(350px, 25%, 500px);
   position: fixed;
   top: 0%;
   right: -100%;

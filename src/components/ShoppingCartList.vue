@@ -62,6 +62,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- :class="{ 'bg-secondary': props.setBackColorGray }" -->
   <div class="layout" :class="{ 'bg-secondary': props.setBackColorGray }">
     <div class="p-2 overflow-auto" style="scrollbar-width: thin">
       <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
