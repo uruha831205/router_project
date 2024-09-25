@@ -3,6 +3,16 @@ import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import ShoppingCartList from "@/components/ShoppingCartList.vue";
 
+import { storeToRefs } from "pinia";
+import { gun_shop } from "@/stores/usePinia.js";
+const gunshop = gun_shop();
+const { all_ShoppingCart_products } = storeToRefs(gunshop);
+
+function read_ShoppingCart() {
+  all_ShoppingCart_products.value =
+    JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
+}
+
 const get_route = useRoute();
 const get_router = useRouter();
 const route_name = get_route.params.message;
@@ -27,7 +37,6 @@ function scrollToTop() {
 }
 
 function startSearch() {
-  //searchContent
   get_router.push({
     name: "search_product",
     query: { searchContent: searchContent.value, t: Date.now() },
@@ -44,6 +53,11 @@ if (!["airsoft", "real", "member"].includes(route_name)) {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  try {
+    read_ShoppingCart();
+  } catch (err) {
+    console.log(err);
+  }
 });
 </script>
 
@@ -60,7 +74,7 @@ onMounted(() => {
         <div class="search-area" style="width: 60%">
           <input
             type="text"
-            class="search-text px-5"
+            class="search-text px-4"
             style="padding: 0.8rem"
             placeholder="HK416  戰術手套"
             v-model="searchContent"
@@ -74,14 +88,25 @@ onMounted(() => {
             <i class="bi bi-search fs-4"></i>
           </button>
         </div>
-        <div class="d-flex">
-          <router-link
+        <div class="d-flex" style="position: relative">
+          <!-- <router-link
             :to="`/${route_name}/member`"
             class="fw-bloder fs-2 text-black me-4 member"
             ><i class="bi bi-person-circle"></i
-          ></router-link>
+          ></router-link> -->
+          <span
+            v-if="all_ShoppingCart_products.length > 0"
+            class="bg-danger rounded"
+            style="
+              position: absolute;
+              top: 15%;
+              right: -10%;
+              width: 0.8rem;
+              height: 0.8rem;
+            "
+          ></span>
           <i
-            class="bi bi-bag fs-2 member"
+            class="bi bi-cart fs-2 member"
             style="cursor: pointer"
             @click.stop="toogleShoppingCart"
           ></i>
@@ -167,7 +192,7 @@ onMounted(() => {
 
     <footer class="d-flex justify-content-center">
       <main class="container-xl row row-cols-lg-3 row-cols-xs-1">
-        <section class="mb-5" v-for="x in 3">
+        <section class="mb-5" v-for="index in 3" :key="index">
           門市營業時間
           <hr class="mt-1 mb-2" />
           周二 ~ 周日 : AM. 11:00 ~ PM.9:00 <br />
@@ -182,8 +207,23 @@ onMounted(() => {
       <div class="toolButton goTopButton" @click="scrollToTop">
         <i class="bi bi-arrow-bar-up text-black"></i>
       </div>
-      <div class="toolButton goTopButton" @click="toogleShoppingCart">
-        <i class="bi bi-bag text-black"></i>
+      <div
+        class="toolButton shoppingCartButton"
+        style="position: relative"
+        @click="toogleShoppingCart"
+      >
+        <span
+          v-if="all_ShoppingCart_products.length > 0"
+          class="bg-danger rounded"
+          style="
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            width: 0.8rem;
+            height: 0.8rem;
+          "
+        ></span>
+        <i class="bi bi-cart text-black"></i>
       </div>
     </section>
 

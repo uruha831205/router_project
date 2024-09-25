@@ -54,19 +54,19 @@ const router = createRouter({
             }
           },
         },
-        {
-          path: "/:message/:kind",
-          name: "kind_product",
-          component: () => import("../views/productpages/ShowProductPage.vue"),
-          beforeEnter: (to, from, next) => {
-            const validMessages = ["gun", "part", "component", "equipment"];
-            if (validMessages.includes(to.params.kind)) {
-              next();
-            } else {
-              next({ name: "404NotFound" });
-            }
-          },
-        },
+        // {
+        //   path: "/:message/:kind",
+        //   name: "kind_product",
+        //   component: () => import("../views/productpages/ShowProductPage.vue"),
+        //   beforeEnter: (to, from, next) => {
+        //     const validMessages = ["gun", "part", "component", "equipment"];
+        //     if (validMessages.includes(to.params.kind)) {
+        //       next();
+        //     } else {
+        //       next({ name: "404NotFound" });
+        //     }
+        //   },
+        // },
         {
           path: "/:message/product",
           name: "search_product",

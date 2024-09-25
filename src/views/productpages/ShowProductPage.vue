@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watch, computed, watchEffect } from "vue";
-import { useRoute } from "vue-router";
+// import { ref, watch, computed, watchEffect } from "vue";
+// import { useRoute } from "vue-router";
 import psidebar from "@/components/SideBar.vue";
 import pcontent from "@/components/Content.vue";
 //const get_route = useRoute();

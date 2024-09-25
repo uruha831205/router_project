@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, triggerRef } from "vue";
-
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
 
@@ -8,11 +7,6 @@ const props = defineProps(["setBackColorGray"]);
 
 const gunshop = gun_shop();
 const { all_ShoppingCart_products } = storeToRefs(gunshop);
-
-function read_ShoppingCart() {
-  all_ShoppingCart_products.value =
-    JSON.parse(localStorage.getItem("all_shopping_cart_products")) || [];
-}
 
 function clear_ShoppingCart() {
   all_ShoppingCart_products.value = [];
@@ -55,10 +49,6 @@ function save_all_ShoppingCart_products_in_localStorage() {
     JSON.stringify(all_ShoppingCart_products.value)
   );
 }
-
-onMounted(() => {
-  read_ShoppingCart();
-});
 </script>
 
 <template>
@@ -67,7 +57,8 @@ onMounted(() => {
     <div class="p-2 overflow-auto" style="scrollbar-width: thin">
       <div v-if="all_ShoppingCart_products.length == 0">目前是空的</div>
       <div
-        v-for="product in all_ShoppingCart_products"
+        v-for="(product, index) in all_ShoppingCart_products"
+        :key="index"
         class="row mb-2 align-items-center m-0"
       >
         <img

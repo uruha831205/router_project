@@ -28,7 +28,8 @@ const onSlideChange = (swiper) => {
 
 const get_route = useRoute();
 const gunshop = gun_shop();
-const { airsoft_datas, real_datas } = storeToRefs(gunshop);
+const { airsoft_datas, real_datas, all_ShoppingCart_products } =
+  storeToRefs(gunshop);
 
 const choose_data =
   get_route.params.message === "airsoft" ? airsoft_datas : real_datas;
@@ -40,7 +41,7 @@ function add_product_to_Cart(product) {
   gunshop.add_products(product);
   localStorage.setItem(
     "all_shopping_cart_products",
-    JSON.stringify(product.value)
+    JSON.stringify(all_ShoppingCart_products.value)
   );
 }
 </script>
@@ -52,7 +53,7 @@ function add_product_to_Cart(product) {
         <swiper
           :modules="[Thumbs]"
           :thumbs="{ swiper: thumbsSwiper }"
-          @slideChange="onSlideChange"
+          @slide-Change="onSlideChange"
         >
           <swiper-slide
             v-for="(product, index) in select_data.p_other_pics"
@@ -163,7 +164,8 @@ function add_product_to_Cart(product) {
             <TabPanel value="0">
               <div class="d-flex flex-column align-items-center">
                 <img
-                  v-for="pic in select_data.p_other_pics"
+                  v-for="(pic, index) in select_data.p_other_pics"
+                  :key="index"
                   class="mb-3"
                   :src="pic"
                   alt="pic"

@@ -1,10 +1,10 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { computed, onMounted, ref, shallowRef } from "vue";
+import { computed, ref } from "vue";
 // import { Carousel } from "bootstrap";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, Autoplay, Scrollbar } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -16,9 +16,6 @@ import { gun_shop } from "@/stores/usePinia.js";
 
 //取得路由資料
 const get_route = useRoute();
-
-//onSlideChange 參考變數
-// const activeSlide = ref(0);
 
 //取得 pinia資料
 const gunshop = gun_shop();
@@ -35,12 +32,24 @@ const real = [
   new URL("@/assets/img/real_new/real_new_3.jpg", import.meta.url),
 ];
 
+const currentIndex = ref(0);
+const currentList = ref([]);
+
+const onSlideChange = (swiper) => {
+  currentIndex.value = swiper.realIndex;
+  if (currentList.value.length <= swiper.slides.length) {
+    currentList.value.push(currentIndex.value);
+    console.log(currentList.value);
+  }
+};
+
 const choose = computed(() => {
   if (get_route.params.message == "airsoft") {
     return airsoft;
   } else if (get_route.params.message == "real") {
     return real;
   }
+  return null;
 });
 
 const show_datas = computed(() => {
@@ -49,6 +58,7 @@ const show_datas = computed(() => {
   } else if (get_route.params.message == "real") {
     return real_datas.value;
   }
+  return null;
 });
 </script>
 
@@ -69,6 +79,7 @@ const show_datas = computed(() => {
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }"
+      @slide-change="onSlideChange"
       class="my-2"
     >
       <swiper-slide v-for="(product, index) in choose" :key="index">
@@ -76,6 +87,7 @@ const show_datas = computed(() => {
           :src="product"
           style="object-fit: cover; cursor: pointer"
           class="w-100"
+          :class="{ 'swiper-img': currentList.includes(index) }"
           alt="Product-image"
         />
       </swiper-slide>
@@ -89,7 +101,11 @@ const show_datas = computed(() => {
 
     <div class="new-products my-3">
       <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-xs-1">
-        <div v-for="data in show_datas" class="new-product-banner">
+        <div
+          v-for="(data, index) in show_datas"
+          :key="index"
+          class="new-product-banner"
+        >
           <div class="product w-100 h-100">
             <div class="new-tag">新品上市</div>
             <router-link
@@ -115,6 +131,16 @@ const show_datas = computed(() => {
 </template>
 
 <style scoped>
+.swiper-img {
+  animation: imgshow 5s forwards;
+}
+
+@keyframes imgshow {
+  to {
+    scale: 1.05;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .product {
     background-color: #333;
@@ -172,11 +198,11 @@ const show_datas = computed(() => {
   --swiper-pagination-bullet-height: 12px; /* 設定 pagination 的高度 */
 }
 
-img {
+:is(.new-products) img {
   transition: 0.5s;
 }
 
-img:hover {
+:is(.new-products) img:hover {
   scale: 1.03;
 }
 

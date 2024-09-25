@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
-import { onMounted, ref, shallowRef, watch, watchEffect } from "vue";
+import { onMounted, shallowRef, watch } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
@@ -64,7 +64,7 @@ onMounted(() => {
 <template>
   <div class="container">
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-xs-1">
-      <div v-for="item in show_items" class="p-3">
+      <div v-for="(item, index) in show_items" :key="index" class="p-3">
         <div class="product-banner">
           <router-link
             :to="`/${get_route.params.message}/${item.p_id}`"
