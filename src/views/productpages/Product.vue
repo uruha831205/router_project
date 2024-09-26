@@ -43,6 +43,7 @@ function add_product_to_Cart(product) {
     "all_shopping_cart_products",
     JSON.stringify(all_ShoppingCart_products.value)
   );
+  console.log(all_ShoppingCart_products.value);
 }
 </script>
 

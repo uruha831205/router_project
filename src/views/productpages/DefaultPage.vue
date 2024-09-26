@@ -39,7 +39,6 @@ const onSlideChange = (swiper) => {
   currentIndex.value = swiper.realIndex;
   if (currentList.value.length <= swiper.slides.length) {
     currentList.value.push(currentIndex.value);
-    console.log(currentList.value);
   }
 };
 
@@ -67,7 +66,7 @@ const show_datas = computed(() => {
     <!-- @slideChange="onSlideChange" -->
     <swiper
       :loop="true"
-      :speed="1000"
+      :speed="1500"
       :modules="[Navigation, Pagination, Autoplay]"
       :pagination="{ clickable: true }"
       :navigation="{
@@ -75,7 +74,7 @@ const show_datas = computed(() => {
         nextEl: '.custom-next',
       }"
       :autoplay="{
-        delay: 3000,
+        delay: 4000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }"
@@ -137,7 +136,7 @@ const show_datas = computed(() => {
 
 @keyframes imgshow {
   to {
-    scale: 1.05;
+    scale: 1.1;
   }
 }
 
@@ -160,10 +159,6 @@ const show_datas = computed(() => {
 .product {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 6px 1px,
     rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
-  /*
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px 1px,
-    rgba(0, 0, 0, 0.06) 0px -1px 4px -1px;
-  */
   padding: 1rem;
   border-radius: 0.5rem;
   position: relative;

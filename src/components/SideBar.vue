@@ -1,17 +1,12 @@
 <script setup>
-import { ref, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
+import Selectbar from "@/components/SelectBar.vue";
 const gunshop = gun_shop();
 const { guns, parts, components, equipments } = storeToRefs(gunshop);
 
-const show_products = reactive([guns, parts, components, equipments]);
-const dropdownState = ref([false, false, false, false]);
+const show_products = [guns, parts, components, equipments];
 const select_bar_name = ["長槍短槍", "內部零件", "外部配件", "人身裝備"];
-
-const toggleDropdown = (dropdownKey) => {
-  dropdownState.value[dropdownKey] = !dropdownState.value[dropdownKey];
-};
 </script>
 
 <template>
@@ -22,22 +17,13 @@ const toggleDropdown = (dropdownKey) => {
   <!-- 下拉式選單 -->
   <div
     class="select-bar"
-    v-for="(show_product, index) in show_products"
+    v-for="(_, index) in show_products.length"
     :key="index"
   >
-    <div class="select-name" @click="toggleDropdown(index)">
-      {{ select_bar_name[index] }}
-      <i v-if="dropdownState[index]" class="bi bi-caret-up-fill"></i>
-      <i v-if="!dropdownState[index]" class="bi bi-caret-down-fill"></i>
-    </div>
-    <ul :class="['select-items', { show: dropdownState[index] }]">
-      <li v-for="item in show_product.value" :key="item.id">
-        <input type="checkbox" :id="item.name" />
-        <label :for="item.name" style="margin-left: 5px">
-          {{ item.name }}
-        </label>
-      </li>
-    </ul>
+    <Selectbar
+      :titleItem="select_bar_name[index]"
+      :selectItems="show_products[index]"
+    ></Selectbar>
     <hr />
   </div>
 
@@ -47,26 +33,6 @@ const toggleDropdown = (dropdownKey) => {
 <style scoped>
 hr {
   margin-top: 10px;
-}
-
-.select-name {
-  padding: 0 15px 5px;
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.select-items {
-  max-height: 0;
-  transition: linear 0.2s;
-  transform-origin: top;
-  overflow: hidden;
-  list-style-type: none;
-  margin: 0 5px;
-}
-
-.select-items.show {
-  display: block;
-  max-height: 200px;
 }
 
 .search-bar {
@@ -99,5 +65,6 @@ hr {
   font-size: 1.2rem;
   font-weight: bold;
   color: aliceblue;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 1px;
 }
 </style>

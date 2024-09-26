@@ -5,22 +5,22 @@ import { onMounted, shallowRef, watch } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
-const gunshop = gun_shop();
+const gunShop = gun_shop();
 const { airsoft_datas, real_datas, all_ShoppingCart_products } =
-  storeToRefs(gunshop);
+  storeToRefs(gunShop);
 
 const choose_items = shallowRef();
 const show_items = shallowRef();
 
 function add_product_to_Cart(product) {
-  gunshop.add_products(product);
+  gunShop.add_products(product);
   localStorage.setItem(
     "all_shopping_cart_products",
     JSON.stringify(all_ShoppingCart_products.value)
   );
 }
 
-function search() {
+function selectDatas() {
   choose_items.value =
     get_route.params.message == "airsoft"
       ? airsoft_datas.value
@@ -28,14 +28,14 @@ function search() {
 }
 
 function serachByName(name) {
-  search();
+  selectDatas();
   show_items.value = choose_items.value.filter((products) =>
     products.p_name.toLowerCase().includes(name.toLowerCase())
   );
 }
 
 function serachByKind(kind) {
-  search();
+  selectDatas();
   show_items.value = choose_items.value.filter(
     (products) => products.p_kind === kind
   );
