@@ -1,19 +1,53 @@
 <script setup>
+import { useRouter, useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
 import Selectbar from "@/components/SelectBar.vue";
+const get_router = useRouter();
+const get_route = useRoute();
 const gunshop = gun_shop();
 const { guns, parts, components, equipments } = storeToRefs(gunshop);
 
+const siderSelected = ref([[], [], [], []]);
 const show_products = [guns, parts, components, equipments];
 const select_bar_name = ["長槍短槍", "內部零件", "外部配件", "人身裝備"];
+
+const Props = defineProps([
+  "searchContent",
+  "searchGroup",
+  "getsiderBarSearch",
+]);
+
+function search() {
+  get_router.push({
+    name: "search_product",
+    query: {
+      searchContent: Props.searchContent,
+      searchGroup: Props.searchGroup,
+      getsiderBarSearch: siderSelected.value,
+      sideBar_time: Date.now(),
+    },
+  });
+}
+
+onMounted(() => {
+  if (Props.getsiderBarSearch != undefined) {
+    siderSelected.value = Props.getsiderBarSearch.map((item) =>
+      item.split(",")
+    );
+  }
+});
+Props;
 </script>
 
 <template>
+  <!-- <div>{{ siderSelected }}</div>
+  <div>Props {{ Props.getsiderBarSearch }}</div> -->
   <!-- 搜尋引擎 -->
-  <div class="search-bar">
+  <!-- <div class="search-bar">
     <input type="text" class="search p-2" placeholder=": HK416  戰術手套" />
-  </div>
+  </div> -->
   <!-- 下拉式選單 -->
   <div
     class="select-bar"
@@ -21,18 +55,23 @@ const select_bar_name = ["長槍短槍", "內部零件", "外部配件", "人身
     :key="index"
   >
     <Selectbar
+      v-model="siderSelected[index]"
       :titleItem="select_bar_name[index]"
       :selectItems="show_products[index]"
     ></Selectbar>
     <hr />
   </div>
 
-  <button class="search-btn py-1">搜尋</button>
+  <button class="search-btn py-1" @click="search">搜尋</button>
 </template>
 
 <style scoped>
 hr {
   margin-top: 10px;
+}
+
+.select-bar {
+  margin-top: 1rem;
 }
 
 .search-bar {

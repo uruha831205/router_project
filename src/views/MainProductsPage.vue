@@ -39,7 +39,7 @@ function scrollToTop() {
 function startSearch() {
   get_router.push({
     name: "search_product",
-    query: { searchContent: searchContent.value, t: Date.now() },
+    query: { searchContent: searchContent.value, time: Date.now() },
   });
 }
 
@@ -120,7 +120,7 @@ onMounted(() => {
           <router-link
             :to="{
               name: 'search_product',
-              query: { searchGroup: '長槍短槍', t: Date.now() },
+              query: { searchGroup: '長槍短槍', time: Date.now() },
             }"
             @click="clickToogle"
             class="choose fw-bold fs-4"
@@ -130,7 +130,7 @@ onMounted(() => {
           <router-link
             :to="{
               name: 'search_product',
-              query: { searchGroup: '內部零件', t: Date.now() },
+              query: { searchGroup: '內部零件', time: Date.now() },
             }"
             @click="clickToogle"
             class="choose fw-bold fs-4"
@@ -140,7 +140,7 @@ onMounted(() => {
           <router-link
             :to="{
               name: 'search_product',
-              query: { searchGroup: '外部配件', t: Date.now() },
+              query: { searchGroup: '外部配件', time: Date.now() },
             }"
             @click="clickToogle"
             class="choose fw-bold fs-4"
@@ -150,7 +150,7 @@ onMounted(() => {
           <router-link
             :to="{
               name: 'search_product',
-              query: { searchGroup: '人身裝備', t: Date.now() },
+              query: { searchGroup: '人身裝備', time: Date.now() },
             }"
             @click="clickToogle"
             class="choose fw-bold fs-4"

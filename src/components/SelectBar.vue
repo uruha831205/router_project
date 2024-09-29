@@ -1,15 +1,19 @@
 <script setup>
 import { ref, watch } from "vue";
 
-const checkedItems = ref([]);
+const Props = defineProps(["titleItem", "selectItems"]);
+const checkedItems = defineModel();
+
 const selectAll = ref(false);
 const dropdownState = ref(false);
-
-const Props = defineProps(["titleItem", "selectItems"]);
 
 const toggleDropdown = () => {
   dropdownState.value = !dropdownState.value;
 };
+
+watch(checkedItems, () => {
+  console.log(checkedItems.value);
+});
 
 watch(selectAll, () => {
   if (selectAll.value) {
@@ -40,13 +44,11 @@ watch(checkedItems, () => {
     <div>
       <input
         class="me-1"
+        style="cursor: pointer"
         type="checkbox"
-        :id="Props.titleItem"
         v-model="selectAll"
       />
-      <label class="text-secondary" :for="Props.titleItem">{{
-        Props.titleItem
-      }}</label>
+      <label style="cursor: pointer">{{ Props.titleItem }}</label>
     </div>
     <div>
       <i v-if="dropdownState" class="bi bi-caret-up-fill"></i>
@@ -62,7 +64,7 @@ watch(checkedItems, () => {
         :value="item.name"
         v-model="checkedItems"
       />
-      <label class="text-secondary" :for="item.name">{{ item.name }}</label>
+      <label :for="item.name">{{ item.name }}</label>
     </li>
   </ul>
 </template>

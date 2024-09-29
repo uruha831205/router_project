@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { shallowRef, triggerRef } from "vue";
+import { ref, shallowRef, triggerRef } from "vue";
 
 export const gun_shop = defineStore("gun_shop", () => {
   const guns = shallowRef([
@@ -330,6 +330,8 @@ export const gun_shop = defineStore("gun_shop", () => {
   //購物車內的商品
   //all_ShoppingCart_products 內的基礎變數: 型別 => { product: object, quantity: int }
   const all_ShoppingCart_products = shallowRef([]);
+
+  // const siderSelected = ref([[], [], [], []]);
 
   //增加商品至購物車
   const add_products = (product) => {

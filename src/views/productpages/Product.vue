@@ -203,7 +203,7 @@ function add_product_to_Cart(product) {
   </div>
 </template>
 
-<style>
+<style scoped>
 .active-thumb {
   opacity: 1; /* 活動縮略圖不透明 */
 }

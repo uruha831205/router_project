@@ -1,13 +1,21 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
-import { onMounted, shallowRef, watch } from "vue";
+import { ref, onMounted, shallowRef, watch } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
 const gunShop = gun_shop();
-const { airsoft_datas, real_datas, all_ShoppingCart_products } =
+const { all_ShoppingCart_products, airsoft_datas, real_datas } =
   storeToRefs(gunShop);
+
+const siderSelected = ref([[], [], [], []]);
+
+const Props = defineProps([
+  "searchGroup",
+  "searchContent",
+  "getsiderBarSearch",
+]);
 
 const choose_items = shallowRef();
 const show_items = shallowRef();
@@ -41,27 +49,52 @@ function serachByKind(kind) {
   );
 }
 
+function searchBySonKind() {}
+
 function checkToSearch() {
-  if ("searchContent" in get_route.query) {
-    serachByName(get_route.query.searchContent);
-  } else if ("searchGroup" in get_route.query) {
-    serachByKind(get_route.query.searchGroup);
+  // if ("searchContent" in get_route.query) {
+  //   serachByName(get_route.query.searchContent);
+  // } else if ("searchGroup" in get_route.query) {
+  //   serachByKind(get_route.query.searchGroup);
+  // }
+  if (Props.searchContent != undefined) {
+    serachByName(Props.searchContent);
+  } else if (Props.searchGroup != undefined) {
+    serachByKind(Props.searchGroup);
+  }
+}
+
+function split_sideBar() {
+  if (Props.getsiderBarSearch != undefined) {
+    siderSelected.value = Props.getsiderBarSearch.map((item) =>
+      item.split(",")
+    );
   }
 }
 
 watch(
-  () => get_route.query.t,
+  () => get_route.query.time,
   () => {
     checkToSearch();
   }
 );
 
+watch(
+  () => Props.getsiderBarSearch,
+  () => {
+    split_sideBar();
+  }
+);
+
 onMounted(() => {
   checkToSearch();
+  split_sideBar();
 });
 </script>
 
 <template>
+  <!-- <div>{{ Props }}</div>
+  <div v-for="item in siderSelected">{{ item }}</div> -->
   <div class="container">
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-xs-1">
       <div v-for="(item, index) in show_items" :key="index" class="p-3">
