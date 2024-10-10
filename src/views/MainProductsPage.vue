@@ -166,7 +166,7 @@ onMounted(() => {
           <div class="search-area w-100">
             <input
               type="text"
-              class="search-text p-2"
+              class="search-text px-4"
               placeholder="HK416  戰術手套"
               v-model="searchContent"
             />
@@ -418,12 +418,12 @@ onMounted(() => {
   height: 2px;
   background-color: rgb(31, 31, 31);
   border-radius: 5px;
-  transform: scaleY(0);
-  transition: 0.3s;
+  transform: scaleX(0);
+  transition: 0.5s;
 }
 
 .choose:hover::after {
-  transform: scaleY(1);
+  transform: scaleX(0.95);
 }
 
 .run-horse-bar {

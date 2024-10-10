@@ -2,22 +2,27 @@
 import { ref, watch } from "vue";
 
 const Props = defineProps(["titleItem", "selectItems"]);
-const checkedItems = defineModel();
 
+const checkedItems = defineModel();
 const selectAll = ref(false);
 const dropdownState = ref(false);
+const select_items_CSS = ref(null);
 
 const toggleDropdown = () => {
   dropdownState.value = !dropdownState.value;
 };
 
-watch(checkedItems, () => {
-  console.log(checkedItems.value);
+watch(dropdownState, () => {
+  if (dropdownState.value) {
+    select_items_CSS.value.style.maxHeight = `${select_items_CSS.value.scrollHeight}px`;
+  } else {
+    select_items_CSS.value.style.maxHeight = 0;
+  }
 });
 
 watch(selectAll, () => {
   if (selectAll.value) {
-    checkedItems.value = Props.selectItems.value.map((gun) => gun.name);
+    checkedItems.value = Props.selectItems.value.map((item) => item.name);
     dropdownState.value = selectAll.value;
   } else if (
     !(
@@ -32,10 +37,11 @@ watch(selectAll, () => {
 watch(checkedItems, () => {
   if (checkedItems.value.length == Props.selectItems.value.length) {
     selectAll.value = true;
-  } else if (checkedItems.value.length == 0) {
-    dropdownState.value = false;
-  } else {
+  } else if (checkedItems.value.length < Props.selectItems.value.length) {
     selectAll.value = false;
+    if (checkedItems.value.length == 0) {
+      dropdownState.value = false;
+    }
   }
 });
 </script>
@@ -50,12 +56,12 @@ watch(checkedItems, () => {
       />
       <label style="cursor: pointer">{{ Props.titleItem }}</label>
     </div>
-    <div>
-      <i v-if="dropdownState" class="bi bi-caret-up-fill"></i>
-      <i v-if="!dropdownState" class="bi bi-caret-down-fill"></i>
+    <div class="select-bar-icon" :class="{ show: dropdownState }">
+      <!-- <i v-if="dropdownState" class="bi bi-caret-up-fill select-bar-icon"></i> -->
+      <i class="bi bi-caret-down-fill"></i>
     </div>
   </div>
-  <ul class="select-items" :class="{ show: dropdownState }">
+  <ul ref="select_items_CSS" class="select-items">
     <li v-for="item in Props.selectItems.value">
       <input
         class="me-1"
@@ -80,16 +86,20 @@ watch(checkedItems, () => {
 }
 
 .select-items {
-  max-height: 0;
-  transition: linear 0.2s;
+  max-height: 0px;
+  transition: 0.2s ease;
   transform-origin: top;
   overflow: hidden;
   list-style-type: none;
   margin: 0 5px;
 }
 
-.select-items.show {
-  display: block;
-  max-height: 200px;
+.select-bar-icon {
+  transition: 0.5s;
+  transform: rotate(0deg);
+}
+
+.select-bar-icon.show {
+  transform: rotate(180deg);
 }
 </style>

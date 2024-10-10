@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
-import { ref, onMounted, shallowRef, watch } from "vue";
+import { ref, onMounted, shallowRef, watch, triggerRef } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
@@ -18,6 +18,8 @@ const Props = defineProps([
 ]);
 
 const choose_items = shallowRef();
+const search_items = shallowRef();
+const search_detailed_items = shallowRef();
 const show_items = shallowRef();
 
 function add_product_to_Cart(product) {
@@ -37,19 +39,35 @@ function selectDatas() {
 
 function serachByName(name) {
   selectDatas();
-  show_items.value = choose_items.value.filter((products) =>
+  search_items.value = choose_items.value.filter((products) =>
     products.p_name.toLowerCase().includes(name.toLowerCase())
   );
+  show_items.value = search_items.value;
 }
 
 function serachByKind(kind) {
   selectDatas();
-  show_items.value = choose_items.value.filter(
+  search_items.value = choose_items.value.filter(
     (products) => products.p_kind === kind
   );
+  show_items.value = search_items.value;
 }
 
-function searchBySonKind() {}
+function serachByDetailed() {
+  if (siderSelected.value.every((innerArray) => innerArray.length === 0)) {
+    return;
+  }
+
+  search_detailed_items.value = [];
+  search_items.value.forEach((item) => {
+    if (
+      siderSelected.value.find((detailed) => detailed.includes(item.p_son_kind))
+    ) {
+      search_detailed_items.value.push(item);
+    }
+  });
+  show_items.value = search_detailed_items.value;
+}
 
 function checkToSearch() {
   // if ("searchContent" in get_route.query) {
@@ -64,13 +82,22 @@ function checkToSearch() {
   }
 }
 
-function split_sideBar() {
+function split_sideBar_data() {
   if (Props.getsiderBarSearch != undefined) {
     siderSelected.value = Props.getsiderBarSearch.map((item) =>
       item.split(",")
     );
   }
 }
+
+watch(
+  () => Props.getsiderBarSearch,
+  () => {
+    if (Props.getsiderBarSearch == undefined) {
+      siderSelected.value = [[], [], [], []];
+    }
+  }
+);
 
 watch(
   () => get_route.query.time,
@@ -82,13 +109,18 @@ watch(
 watch(
   () => Props.getsiderBarSearch,
   () => {
-    split_sideBar();
+    split_sideBar_data();
   }
 );
 
+//BUG
+watch(siderSelected, () => {
+  serachByDetailed();
+});
+
 onMounted(() => {
   checkToSearch();
-  split_sideBar();
+  split_sideBar_data();
 });
 </script>
 

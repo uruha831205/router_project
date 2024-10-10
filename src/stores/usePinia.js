@@ -331,8 +331,6 @@ export const gun_shop = defineStore("gun_shop", () => {
   //all_ShoppingCart_products 內的基礎變數: 型別 => { product: object, quantity: int }
   const all_ShoppingCart_products = shallowRef([]);
 
-  // const siderSelected = ref([[], [], [], []]);
-
   //增加商品至購物車
   const add_products = (product) => {
     set_products(product);
