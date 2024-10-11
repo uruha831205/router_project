@@ -156,7 +156,7 @@ export const gun_shop = defineStore("gun_shop", () => {
 
   const real_datas = shallowRef([
     {
-      p_id: "R001",
+      p_id: "001",
       p_name: "AK-47",
       p_brand: "Kalashnikov",
       p_kind: "長槍短槍",
@@ -176,7 +176,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "AK發射7.62×39公釐中間型威力槍彈，由容量為30發子彈的弧形彈匣供彈，其保險／射擊選擇桿的設計則參考自美國雷明頓8型半自動步槍，設置在機匣右側，可以選擇半自動或者全自動的發射方式，槍機拉柄位於機匣右側，為槍機座的一部份。AK的槍機動作可靠，即使在連續射擊時有灰塵等異物進入槍內，它的機械結構仍能保證繼續正常運作，並可以在沙漠、熱帶雨林、嚴寒等極度惡劣的環境下保持相當好的效能，而且它的結構簡單，易於分解、清潔和維修，操作簡便。",
     },
     {
-      p_id: "R002",
+      p_id: "002",
       p_name: "快速反應板機",
       p_brand: "SALVIMAR",
       p_kind: "內部零件",
@@ -196,7 +196,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "MEC Pro Trigger可以輕鬆實現更緊密的扳機拉力。直板扳機設計提供了短拉幾何形狀。",
     },
     {
-      p_id: "R003",
+      p_id: "003",
       p_name: "RA-TECH MOE 戰術握把",
       p_brand: "RA-TECH",
       p_kind: "外部配件",
@@ -216,7 +216,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "PTS Enhanced Polymer M4 Grip - Compact (EPG-C) 是一款簡單但功能強大的 M4/M16 平台專用聚合物手槍握把。它具有人體工學設計的形狀和獨特的紋理，經過優化，即使在惡劣環境下也能提供強大且合適的握把力。此外，EPG-C 的握把角度比標準的 M4 握把更小，更適合現代卡賓槍戰鬥和近距離作戰姿勢。這種握把角度有助於減輕手腕的負擔，並有助於將手放在更接近扳機位置，以獲得更好的扳機控制。它能讓使用者在將槍托完全折疊或完全伸展的情況下同樣舒適地操作槍械。",
     },
     {
-      p_id: "R004",
+      p_id: "004",
       p_name: "5.11-TACTEC PLATE CARRIER 戰術背心",
       p_brand: "5.11",
       p_kind: "人身裝備",
@@ -240,7 +240,7 @@ export const gun_shop = defineStore("gun_shop", () => {
           Tactec戰術背心內部為考量使用舒適度，正反面皆有透氣網格襯墊，在雙肩更是特別加厚達到有效減壓效果。`,
     },
     {
-      p_id: "R005",
+      p_id: "005",
       p_name: "AK-47S ",
       p_brand: "Kalashnikov",
       p_kind: "長槍短槍",
@@ -262,7 +262,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "AK發射7.62×39公釐中間型威力槍彈，由容量為30發子彈的弧形彈匣供彈，其保險／射擊選擇桿的設計則參考自美國雷明頓8型半自動步槍，設置在機匣右側，可以選擇半自動或者全自動的發射方式，槍機拉柄位於機匣右側，為槍機座的一部份。AK的槍機動作可靠，即使在連續射擊時有灰塵等異物進入槍內，它的機械結構仍能保證繼續正常運作，並可以在沙漠、熱帶雨林、嚴寒等極度惡劣的環境下保持相當好的效能，而且它的結構簡單，易於分解、清潔和維修，操作簡便。",
     },
     {
-      p_id: "R006",
+      p_id: "006",
       p_name: "快速反應板機 V2",
       p_brand: "SALVIMAR",
       p_kind: "內部零件",
@@ -282,7 +282,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "MEC Pro Trigger可以輕鬆實現更緊密的扳機拉力。直板扳機設計提供了短拉幾何形狀。",
     },
     {
-      p_id: "R007",
+      p_id: "007",
       p_name: "RA-TECH MOE 戰術握把 V2",
       p_brand: "RA-TECH",
       p_kind: "外部配件",
@@ -302,7 +302,7 @@ export const gun_shop = defineStore("gun_shop", () => {
         "PTS Enhanced Polymer M4 Grip - Compact (EPG-C) 是一款簡單但功能強大的 M4/M16 平台專用聚合物手槍握把。它具有人體工學設計的形狀和獨特的紋理，經過優化，即使在惡劣環境下也能提供強大且合適的握把力。此外，EPG-C 的握把角度比標準的 M4 握把更小，更適合現代卡賓槍戰鬥和近距離作戰姿勢。這種握把角度有助於減輕手腕的負擔，並有助於將手放在更接近扳機位置，以獲得更好的扳機控制。它能讓使用者在將槍托完全折疊或完全伸展的情況下同樣舒適地操作槍械。",
     },
     {
-      p_id: "R008",
+      p_id: "008",
       p_name: "5.11-TACTEC PLATE CARRIER 戰術背心 V2",
       p_brand: "5.11",
       p_kind: "人身裝備",

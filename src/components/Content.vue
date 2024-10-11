@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { gun_shop } from "@/stores/usePinia.js";
-import { ref, onMounted, shallowRef, watch, triggerRef } from "vue";
+import { ref, onMounted, shallowRef, watch } from "vue";
 import { useRoute } from "vue-router";
 const get_route = useRoute();
 
@@ -55,6 +55,7 @@ function serachByKind(kind) {
 
 function serachByDetailed() {
   if (siderSelected.value.every((innerArray) => innerArray.length === 0)) {
+    show_items.value = search_items.value;
     return;
   }
 
@@ -85,7 +86,7 @@ function checkToSearch() {
 function split_sideBar_data() {
   if (Props.getsiderBarSearch != undefined) {
     siderSelected.value = Props.getsiderBarSearch.map((item) =>
-      item.split(",")
+      item.split(",") == "" ? [] : item.split(",")
     );
   }
 }

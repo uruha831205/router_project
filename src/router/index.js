@@ -32,41 +32,29 @@ const router = createRouter({
           component: () => import("../views/MemberPage.vue"),
         },
         {
-          path: "/:message/:product_id(A\\d+|R\\d+)",
+          // path: "/:message/:product_id(A\\d+|R\\d+)",
+          path: "/:message/:product_id",
           name: "product_page",
           component: () => import("../views/productpages/Product.vue"),
-          beforeEnter: (to, from, next) => {
-            if (
-              //若在生存遊戲頁面搜尋真實槍枝
-              !(
-                (to.params.message == "airsoft") &
-                to.params.product_id.startsWith("R")
-              ) &
-              //若在真實槍枝頁面搜尋生存遊戲
-              !(
-                (to.params.message == "real") &
-                to.params.product_id.startsWith("A")
-              )
-            ) {
-              next();
-            } else {
-              next({ name: "404NotFound" });
-            }
-          },
+          // beforeEnter: (to, from, next) => {
+          //   if (
+          //     //若在生存遊戲頁面搜尋真實槍枝
+          //     !(
+          //       (to.params.message == "airsoft") &
+          //       to.params.product_id.startsWith("R")
+          //     ) &
+          //     //若在真實槍枝頁面搜尋生存遊戲
+          //     !(
+          //       (to.params.message == "real") &
+          //       to.params.product_id.startsWith("A")
+          //     )
+          //   ) {
+          //     next();
+          //   } else {
+          //     next({ name: "404NotFound" });
+          //   }
+          // },
         },
-        // {
-        //   path: "/:message/:kind",
-        //   name: "kind_product",
-        //   component: () => import("../views/productpages/ShowProductPage.vue"),
-        //   beforeEnter: (to, from, next) => {
-        //     const validMessages = ["gun", "part", "component", "equipment"];
-        //     if (validMessages.includes(to.params.kind)) {
-        //       next();
-        //     } else {
-        //       next({ name: "404NotFound" });
-        //     }
-        //   },
-        // },
         {
           path: "/:message/product",
           name: "search_product",
